@@ -27,8 +27,8 @@ QPushButton {
     background-color: #333333;
     color: white;
     border: none;
-    padding: 8px 8px; /* Уменьшен padding для более компактных кнопок */
-    border-radius: 5px;
+    padding: 12px 12px; /* Увеличен padding для круглых кнопок */
+    border-radius: 50%; /* Сделано круглым */
 }
 
 QPushButton:hover {
@@ -72,7 +72,7 @@ QSlider::handle:horizontal {
     border: 1px solid #007bff;
     width: 18px;
     margin: -5px 0;
-    border-radius: 4px; /* Изменен на 4px для квадратного ползунка */
+    border-radius: 50%; /* Изменен на 50% для круглого ползунка */
 }
 """
 
@@ -133,6 +133,15 @@ class MusicPlayer(QWidget):
 
         self.current_album_tracks = []
         self.current_track_index = -1
+
+        # Пути к файлам иконок
+        self.icon_dir = os.path.join(os.path.dirname(__file__), 'media', 'control_panel_track')
+        self.play_icon_path = os.path.join(self.icon_dir, 'play.ico')
+        self.pause_icon_path = os.path.join(self.icon_dir, 'pause.ico')
+        self.prev_icon_path = os.path.join(self.icon_dir, 'prev.ico')
+        self.next_icon_path = os.path.join(self.icon_dir, 'next.ico')
+        self.shuffle_icon_path = os.path.join(self.icon_dir, 'shuffle.ico')
+        self.repeat_icon_path = os.path.join(self.icon_dir, 'repeat.ico')
 
         self.init_ui()
         self.setup_timer()
@@ -207,30 +216,30 @@ class MusicPlayer(QWidget):
         playback_controls_row_layout.addStretch(1)
 
         # Кнопки в порядке: Перемешать, Предыдущий, Воспроизвести/Пауза, Следующий, Повтор
-        self.shuffle_button = QPushButton("🔀")
+        self.shuffle_button = QPushButton()  # Инициализируем без текста
         self.shuffle_button.clicked.connect(self.toggle_shuffle)
         self.shuffle_button.setFocusPolicy(Qt.NoFocus)
         playback_controls_row_layout.addWidget(self.shuffle_button)
 
-        self.prev_track_button = QPushButton("⏮")
+        self.prev_track_button = QPushButton()  # Инициализируем без текста
         self.prev_track_button.clicked.connect(self.play_previous_track)
         self.prev_track_button.setEnabled(False)
         self.prev_track_button.setFocusPolicy(Qt.NoFocus)
         playback_controls_row_layout.addWidget(self.prev_track_button)
 
-        self.play_pause_button = QPushButton("▶️")
+        self.play_pause_button = QPushButton()  # Инициализируем без текста
         self.play_pause_button.clicked.connect(self.toggle_play_pause)
         self.play_pause_button.setEnabled(False)
         self.play_pause_button.setFocusPolicy(Qt.NoFocus)
         playback_controls_row_layout.addWidget(self.play_pause_button)
 
-        self.next_track_button = QPushButton("⏭")
+        self.next_track_button = QPushButton()  # Инициализируем без текста
         self.next_track_button.clicked.connect(self.play_next_track)
         self.next_track_button.setEnabled(False)
         self.next_track_button.setFocusPolicy(Qt.NoFocus)
         playback_controls_row_layout.addWidget(self.next_track_button)
 
-        self.repeat_button = QPushButton("🔁")
+        self.repeat_button = QPushButton()  # Инициализируем без текста
         self.repeat_button.clicked.connect(self.toggle_repeat)
         self.repeat_button.setFocusPolicy(Qt.NoFocus)
         playback_controls_row_layout.addWidget(self.repeat_button)
@@ -279,10 +288,16 @@ class MusicPlayer(QWidget):
 
         self.setLayout(root_layout)
         self._update_font_sizes()
+        # Инициализируем иконки для кнопок
+        self.shuffle_button.setIcon(QIcon(self.shuffle_icon_path))
+        self.prev_track_button.setIcon(QIcon(self.prev_icon_path))
+        self.next_track_button.setIcon(QIcon(self.next_icon_path))
+        self.repeat_button.setIcon(QIcon(self.repeat_icon_path))
+
         self._update_button_style(self.shuffle_button, self.is_shuffling)
-        self._update_button_style(self.prev_track_button, False)
+        self._update_button_style(self.prev_track_button, False)  # Prev button is never "active" in terms of color
         self._update_play_pause_button_style()
-        self._update_button_style(self.next_track_button, False)
+        self._update_button_style(self.next_track_button, False)  # Next button is never "active" in terms of color
         self._update_button_style(self.repeat_button, self.is_repeating)
 
     def setup_timer(self):
@@ -450,25 +465,18 @@ class MusicPlayer(QWidget):
         self.add_root_folder_button.setFont(font)
         self.back_button.setFont(font)
 
-        # Увеличенный размер шрифта для кнопок воспроизведения/паузы и переключения треков
-        # Скорректирован размер шрифта для лучшего масштабирования
-        playback_button_font_size = max(16, int(window_side * 0.025))
-        playback_font = QFont("Arial", playback_button_font_size)
-
-        self.play_pause_button.setFont(playback_font)
-        self.prev_track_button.setFont(playback_font)
-        self.next_track_button.setFont(playback_font)
-        self.shuffle_button.setFont(playback_font)
-        self.repeat_button.setFont(playback_font)
+        # Устанавливаем размер иконок для кнопок воспроизведения/паузы и переключения треков
+        icon_size = max(24, int(window_side * 0.03))  # Увеличил размер иконки
 
         # Устанавливаем фиксированный размер для кнопок управления воспроизведением
-        # Увеличенный фиксированный размер для лучшей видимости
-        button_fixed_size = max(40, int(window_side * 0.05))
-        self.play_pause_button.setFixedSize(button_fixed_size, button_fixed_size)
-        self.prev_track_button.setFixedSize(button_fixed_size, button_fixed_size)
-        self.next_track_button.setFixedSize(button_fixed_size, button_fixed_size)
-        self.shuffle_button.setFixedSize(button_fixed_size, button_fixed_size)
-        self.repeat_button.setFixedSize(button_fixed_size, button_fixed_size)
+        # Увеличил размер, чтобы соответствовать новому padding и круглой форме
+        button_fixed_size = max(50, int(window_side * 0.06))
+
+        # Применяем размер иконок и фиксированный размер кнопок
+        for button in [self.play_pause_button, self.prev_track_button, self.next_track_button,
+                       self.shuffle_button, self.repeat_button]:
+            button.setIconSize(QSize(icon_size, icon_size))
+            button.setFixedSize(button_fixed_size, button_fixed_size)
 
         time_label_font_size = max(8, int(window_side * 0.007))
         time_font = QFont("Arial", time_label_font_size)
@@ -478,7 +486,7 @@ class MusicPlayer(QWidget):
         self.library_label.setFont(QFont("Arial", base_font_size, QFont.Bold))
         self.volume_label.setFont(time_font)
 
-        # Обновляем стили кнопок после изменения размера шрифта
+        # Обновляем стили кнопок после изменения размера шрифта (только фон)
         self._update_button_style(self.shuffle_button, self.is_shuffling)
         self._update_button_style(self.prev_track_button, False)
         self._update_play_pause_button_style()
@@ -589,32 +597,23 @@ class MusicPlayer(QWidget):
 
     def _update_button_style(self, button, is_active):
         """Применяет стиль к кнопке в зависимости от ее состояния активности."""
-        # Используем текущий шрифт кнопки, чтобы сохранить размер, установленный в _update_font_sizes
-        current_font = button.font()
-        font_style = f"font-family: {current_font.family()}; font-size: {current_font.pointSize()}px;"
-
         if is_active:
-            button.setStyleSheet(f"background-color: #007bff; {font_style}")
+            button.setStyleSheet(f"background-color: #007bff; color: transparent;")  # Добавлено color: transparent
         else:
-            button.setStyleSheet(f"background-color: #333333; {font_style}")
+            button.setStyleSheet(f"background-color: #333333; color: transparent;")  # Добавлено color: transparent
 
     def _update_play_pause_button_style(self):
         """Обновляет стиль и текст кнопки воспроизведения/паузы."""
-        # Используем текущий шрифт кнопки, чтобы сохранить размер, установленный в _update_font_sizes
-        current_font = self.play_pause_button.font()
-        font_style = f"font-family: {current_font.family()}; font-size: {current_font.pointSize()}px;"
-
         current_state = self.media_player.get_state()
 
         # Логика отображения иконки воспроизведения/паузы
         if current_state == vlc.State.Playing:
-            self.play_pause_button.setText("⏸️")  # Если играет, показывать паузу
-            bg_color = "#007bff"  # Активный цвет
+            self.play_pause_button.setIcon(QIcon(self.pause_icon_path))  # Устанавливаем иконку паузы
         else:
-            self.play_pause_button.setText("▶️")  # Если на паузе/остановлено, показывать воспроизведение
-            bg_color = "#333333"  # Неактивный цвет
+            self.play_pause_button.setIcon(QIcon(self.play_icon_path))  # Устанавливаем иконку воспроизведения
 
-        self.play_pause_button.setStyleSheet(f"background-color: {bg_color}; {font_style}")
+        # Фон всегда белый
+        self.play_pause_button.setStyleSheet(f"background-color: white; color: transparent;")
 
     def open_library_folder(self):
         """Открывает диалог выбора папки и сканирует ее на наличие музыкальных файлов."""
