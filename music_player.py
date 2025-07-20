@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
                              QHBoxLayout, QFileDialog, QLabel, QSlider, QSizePolicy, QListWidget, QListWidgetItem)
 from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize
-from PyQt5.QtGui import QPixmap, QImage, QFont
+from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon  # Добавляем QIcon
 import vlc
 from mutagen.mp3 import MP3
 from mutagen.flac import FLAC
@@ -37,8 +37,6 @@ class SquareLabel(QLabel):
 
 class MusicPlayer(QWidget):
     media_parsed_signal = pyqtSignal(int)
-    # Сигнал для обновления списка библиотеки из другого потока
-    # Теперь передает полную структуру данных библиотеки
     library_scan_finished_signal = pyqtSignal(dict)
 
     def __init__(self):
@@ -47,16 +45,19 @@ class MusicPlayer(QWidget):
         self.setGeometry(100, 100, 1280, 720)
         self.setMinimumSize(1280, 720)
 
+        # Установка иконки приложения
+        # !!! ЗАМЕНИТЕ 'path/to/your/icon.png' НА РЕАЛЬНЫЙ ПУТЬ К ВАШЕЙ ИКОНКЕ !!!
+        # Например: self.setWindowIcon(QIcon('icons/music_icon.png'))
+        self.setWindowIcon(QIcon('media\zsxdcvbnjm.ico'))
+
         self.media_player = vlc.MediaPlayer()
         self.current_file = None
         self.total_length_ms = 0
         self.original_cover_pixmap = None
 
-        # Новая структура для хранения данных библиотеки
         self.library_data = {}
-        # Отслеживание текущего пути в библиотеке (например, ['Исполнитель', 'Альбом'])
         self.current_library_path = []
-        self.root_library_folder = None  # Корневая папка библиотеки
+        self.root_library_folder = None
 
         self.init_ui()
         self.setup_timer()
@@ -65,7 +66,6 @@ class MusicPlayer(QWidget):
         self.library_scan_finished_signal.connect(self._on_library_scan_finished)
 
     def init_ui(self):
-        # Главный горизонтальный макет, разделяющий окно на две панели
         root_layout = QHBoxLayout()
 
         # --- Левая панель (Библиотека) ---
@@ -78,10 +78,9 @@ class MusicPlayer(QWidget):
         self.add_root_folder_button.clicked.connect(self.open_library_folder)
         left_panel_layout.addWidget(self.add_root_folder_button)
 
-        # Кнопка "Назад" для навигации по папкам
         self.back_button = QPushButton("Назад")
         self.back_button.clicked.connect(self._navigate_back)
-        self.back_button.setEnabled(False)  # Изначально отключена
+        self.back_button.setEnabled(False)
         left_panel_layout.addWidget(self.back_button)
 
         self.library_list_widget = QListWidget()
@@ -89,12 +88,11 @@ class MusicPlayer(QWidget):
         self.library_list_widget.itemClicked.connect(self.load_track_from_library)
         left_panel_layout.addWidget(self.library_list_widget)
 
-        root_layout.addLayout(left_panel_layout, 1)  # Левая панель занимает 1/4 ширины
+        root_layout.addLayout(left_panel_layout, 1)
 
         # --- Правая панель (Плеер) ---
         right_panel_layout = QVBoxLayout()
 
-        # Раздел информации о треке и обложки
         info_layout = QHBoxLayout()
 
         self.cover_label = SquareLabel()
@@ -118,14 +116,12 @@ class MusicPlayer(QWidget):
         info_layout.addLayout(track_info_layout)
         right_panel_layout.addLayout(info_layout, 3)
 
-        # Ползунок прогресса
         self.position_slider = QSlider(Qt.Horizontal)
         self.position_slider.setRange(0, 1000)
         self.position_slider.sliderMoved.connect(self.set_position)
         self.position_slider.setEnabled(False)
         right_panel_layout.addWidget(self.position_slider, 1)
 
-        # Метки времени
         time_layout = QHBoxLayout()
         self.current_time_label = QLabel("00:00")
         self.total_time_label = QLabel("00:00")
@@ -134,7 +130,6 @@ class MusicPlayer(QWidget):
         time_layout.addWidget(self.total_time_label)
         right_panel_layout.addLayout(time_layout, 1)
 
-        # Кнопки управления
         controls_layout = QHBoxLayout()
         self.open_button = QPushButton("Открыть файл")
         self.open_button.clicked.connect(self.open_file)
@@ -317,7 +312,7 @@ class MusicPlayer(QWidget):
         self.pause_button.setFont(font)
         self.stop_button.setFont(font)
         self.add_root_folder_button.setFont(font)
-        self.back_button.setFont(font)  # Устанавливаем шрифт для кнопки "Назад"
+        self.back_button.setFont(font)
 
         time_label_font_size = max(8, int(window_side * 0.007))
         time_font = QFont("Arial", time_label_font_size)
@@ -383,14 +378,13 @@ class MusicPlayer(QWidget):
         folder_path = QFileDialog.getExistingDirectory(self, "Выбрать корневую папку с музыкой")
         if folder_path:
             self.root_library_folder = folder_path
-            self.library_list_widget.clear()  # Очищаем список перед заполнением
-            self.library_data.clear()  # Очищаем структуру данных библиотеки
-            self.current_library_path = []  # Сбрасываем путь при выборе новой корневой папки
-            self.back_button.setEnabled(False)  # Отключаем кнопку "Назад"
+            self.library_list_widget.clear()
+            self.library_data.clear()
+            self.current_library_path = []
+            self.back_button.setEnabled(False)
 
             supported_extensions = ('.mp3', '.flac', '.wav')
 
-            # Запускаем сканирование в отдельном потоке
             threading.Thread(target=self._scan_music_folder_in_thread, args=(folder_path, supported_extensions)).start()
 
     def _scan_music_folder_in_thread(self, current_folder, supported_extensions):
@@ -400,31 +394,25 @@ class MusicPlayer(QWidget):
         library_structure = {}
 
         for root, dirs, files in os.walk(current_folder):
-            # Вычисляем относительный путь текущей папки от корневой
             relative_root = os.path.relpath(root, current_folder)
-            if relative_root == ".":  # Для корневой папки
+            if relative_root == ".":
                 current_node = library_structure
             else:
-                # Находим соответствующий узел в древовидной структуре
                 path_parts = relative_root.split(os.sep)
                 current_node = library_structure
                 for part in path_parts:
                     if part not in current_node:
-                        current_node[part] = {}  # Создаем новую вложенную папку
+                        current_node[part] = {}
                     current_node = current_node[part]
 
-            # Добавляем файлы в текущий узел
             for file in files:
                 if file.lower().endswith(supported_extensions):
                     full_path = os.path.join(root, file)
-                    current_node[file] = full_path  # Храним полный путь к файлу
+                    current_node[file] = full_path
 
         self.library_scan_finished_signal.emit(library_structure)
 
     def _on_library_scan_finished(self, library_structure):
-        """
-        Слот, который обрабатывает результаты сканирования библиотеки и отображает корневой уровень.
-        """
         self.library_data = library_structure
         self._display_current_library_level()
 
@@ -435,39 +423,30 @@ class MusicPlayer(QWidget):
         self.library_list_widget.clear()
         current_node = self.library_data
 
-        # Переходим к текущему узлу в древовидной структуре
         for part in self.current_library_path:
             if part in current_node:
                 current_node = current_node[part]
             else:
-                # Если путь некорректен, сбрасываемся в корень
                 self.current_library_path = []
                 current_node = self.library_data
                 break
 
-        # Получаем текущий размер шрифта для элементов списка
         list_item_font_size = max(8, int(min(self.width(), self.height()) * 0.006))
         list_item_font = QFont("Arial", list_item_font_size)
 
-        # Добавляем папки (исполнителей/альбомы)
         folders = sorted([k for k, v in current_node.items() if isinstance(v, dict)])
         for folder_name in folders:
             item = QListWidgetItem(folder_name)
             item.setFont(list_item_font)
-            # Сохраняем тип элемента (папка) в UserRole
             item.setData(Qt.UserRole, "folder")
             self.library_list_widget.addItem(item)
 
-        # Добавляем файлы (треки)
         files = sorted([k for k, v in current_node.items() if isinstance(v, str)])
         for file_name in files:
-            # !!! ИЗМЕНЕНИЕ ЗДЕСЬ: Удаляем расширение файла для отображения !!!
             display_name = os.path.splitext(file_name)[0]
             item = QListWidgetItem(display_name)
             item.setFont(list_item_font)
-            # Сохраняем тип элемента (файл) в UserRole
             item.setData(Qt.UserRole, "file")
-            # !!! ВАЖНО: Сохраняем полное имя файла (с расширением) в UserRole + 1 для загрузки !!!
             item.setData(Qt.UserRole + 1, file_name)
             self.library_list_widget.addItem(item)
 
@@ -476,28 +455,24 @@ class MusicPlayer(QWidget):
             item.setFont(list_item_font)
             self.library_list_widget.addItem(item)
 
-        # Обновляем состояние кнопки "Назад"
         self.back_button.setEnabled(len(self.current_library_path) > 0)
 
     def load_track_from_library(self, item):
         """
         Загружает и воспроизводит трек или переходит в папку, выбранную из списка библиотеки.
         """
-        item_type = item.data(Qt.UserRole)  # Получаем тип элемента
+        item_type = item.data(Qt.UserRole)
 
         if item_type == "folder":
             folder_name = item.text()
             self.current_library_path.append(folder_name)
             self._display_current_library_level()
         elif item_type == "file":
-            # !!! ИЗМЕНЕНИЕ ЗДЕСЬ: Получаем полное имя файла из UserRole + 1 !!!
             full_file_name = item.data(Qt.UserRole + 1)
-            # Получаем полный путь к файлу из library_data
             current_node = self.library_data
             for part in self.current_library_path:
                 current_node = current_node[part]
 
-            # Используем полное имя файла для получения пути
             full_path = current_node.get(full_file_name)
             if full_path:
                 self.open_file(full_path)
@@ -511,7 +486,7 @@ class MusicPlayer(QWidget):
         Возвращается на предыдущий уровень в иерархии библиотеки.
         """
         if self.current_library_path:
-            self.current_library_path.pop()  # Удаляем последний элемент пути
+            self.current_library_path.pop()
             self._display_current_library_level()
 
 
