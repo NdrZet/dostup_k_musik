@@ -488,10 +488,14 @@ class MusicPlayer(QWidget):
 
         # Обновляем стили кнопок после изменения размера шрифта (только фон)
         self._update_button_style(self.shuffle_button, self.is_shuffling)
-        self._update_button_style(self.prev_track_button, False)
+        # _update_button_style(self.prev_track_button, False) # Удалено, чтобы prev и next не имели заливки
         self._update_play_pause_button_style()
-        self._update_button_style(self.next_track_button, False)
+        # _update_button_style(self.next_track_button, False) # Удалено, чтобы prev и next не имели заливки
         self._update_button_style(self.repeat_button, self.is_repeating)
+
+        # Устанавливаем стиль для prev и next без заливки
+        self.prev_track_button.setStyleSheet("background-color: #333333; color: transparent;")
+        self.next_track_button.setStyleSheet("background-color: #333333; color: transparent;")
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
@@ -788,7 +792,6 @@ class MusicPlayer(QWidget):
             self.open_file(full_path)
         else:
             print(f"Ошибка: Не удалось найти предыдущий трек: {prev_file_name}")
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
