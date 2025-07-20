@@ -47,7 +47,7 @@ class MusicPlayer(QWidget):
 
         # Установка иконки приложения
         # Используем абсолютный путь для надежной загрузки иконки
-        icon_path = os.path.join(os.path.dirname(__file__), 'media', 'zsxdcvbnjm.ico')  # Обновленный путь к иконке
+        icon_path = os.path.join(os.path.dirname(__file__), 'media', 'zsxdcvbnjm.ico')
         try:
             self.setWindowIcon(QIcon(icon_path))
         except Exception as e:
@@ -63,19 +63,21 @@ class MusicPlayer(QWidget):
         self.root_library_folder = None
 
         # Контекст для воспроизведения следующего/предыдущего трека
-        self.current_album_tracks = []  # Список полных имен файлов в текущем альбоме/папке
-        self.current_track_index = -1  # Индекс текущего воспроизводимого трека
+        self.current_album_tracks = []
+        self.current_track_index = -1
 
         self.init_ui()
         self.setup_timer()
 
         # Устанавливаем начальную громкость (например, 50%)
-        # Эти строки теперь безопасны, так как self.volume_slider уже создан в init_ui
         self.media_player.audio_set_volume(50)
         self.volume_slider.setValue(50)
 
         self.media_parsed_signal.connect(self._on_media_parsed)
         self.library_scan_finished_signal.connect(self._on_library_scan_finished)
+
+        # Устанавливаем фильтр событий на экземпляр QApplication для глобальной обработки клавиш
+        QApplication.instance().installEventFilter(self)
 
     def init_ui(self):
         # Главный горизонтальный макет, разделяющий окно на две панели
@@ -89,16 +91,19 @@ class MusicPlayer(QWidget):
 
         self.add_root_folder_button = QPushButton("Добавить корневую папку")
         self.add_root_folder_button.clicked.connect(self.open_library_folder)
+        self.add_root_folder_button.setFocusPolicy(Qt.NoFocus)  # Убираем фокус с кнопки
         left_panel_layout.addWidget(self.add_root_folder_button)
 
         self.back_button = QPushButton("Назад")
         self.back_button.clicked.connect(self._navigate_back)
         self.back_button.setEnabled(False)
+        self.back_button.setFocusPolicy(Qt.NoFocus)  # Убираем фокус с кнопки
         left_panel_layout.addWidget(self.back_button)
 
         self.library_list_widget = QListWidget()
         self.library_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.library_list_widget.itemClicked.connect(self.load_track_from_library)
+        # Оставляем фокус для QListWidget, так как он нужен для навигации по элементам
         left_panel_layout.addWidget(self.library_list_widget)
 
         root_layout.addLayout(left_panel_layout, 1)
@@ -133,6 +138,7 @@ class MusicPlayer(QWidget):
         self.position_slider.setRange(0, 1000)
         self.position_slider.sliderMoved.connect(self.set_position)
         self.position_slider.setEnabled(False)
+        # Оставляем фокус для QSlider, так как он нужен для перетаскивания
         right_panel_layout.addWidget(self.position_slider, 1)
 
         time_layout = QHBoxLayout()
@@ -150,37 +156,41 @@ class MusicPlayer(QWidget):
         # Кнопка "Предыдущий"
         self.prev_track_button = QPushButton("Предыдущий")
         self.prev_track_button.clicked.connect(self.play_previous_track)
-        self.prev_track_button.setEnabled(False)  # Изначально отключена
+        self.prev_track_button.setEnabled(False)
+        self.prev_track_button.setFocusPolicy(Qt.NoFocus)
         controls_layout.addWidget(self.prev_track_button)
 
         # Объединенная кнопка "Воспроизвести/Пауза"
         self.play_pause_button = QPushButton("Воспроизвести")
         self.play_pause_button.clicked.connect(self.toggle_play_pause)
-        self.play_pause_button.setEnabled(False)  # Изначально отключена
+        self.play_pause_button.setEnabled(False)
+        self.play_pause_button.setFocusPolicy(Qt.NoFocus)
         controls_layout.addWidget(self.play_pause_button)
 
         # Кнопка "Следующий"
         self.next_track_button = QPushButton("Следующий")
         self.next_track_button.clicked.connect(self.play_next_track)
-        self.next_track_button.setEnabled(False)  # Изначально отключена
+        self.next_track_button.setEnabled(False)
+        self.next_track_button.setFocusPolicy(Qt.NoFocus)
         controls_layout.addWidget(self.next_track_button)
         # --- Конец кнопок управления воспроизведением ---
 
         # --- Добавляем управление громкостью ---
         volume_control_layout = QHBoxLayout()
-        self.volume_label = QLabel("Громкость: 50%")  # Начальное значение
+        self.volume_label = QLabel("Громкость: 50%")
         volume_control_layout.addWidget(self.volume_label)
 
         self.volume_slider = QSlider(Qt.Horizontal)
-        self.volume_slider.setRange(0, 100)  # Громкость от 0 до 100%
-        self.volume_slider.setValue(50)  # Начальное значение
+        self.volume_slider.setRange(0, 100)
+        self.volume_slider.setValue(50)
         self.volume_slider.sliderMoved.connect(self.set_volume)
+        # Оставляем фокус для QSlider, так как он нужен для перетаскивания и колесика мыши
         volume_control_layout.addWidget(self.volume_slider)
 
         # Устанавливаем фильтр событий для ползунка громкости
         self.volume_slider.installEventFilter(self)
 
-        controls_layout.addLayout(volume_control_layout)  # Добавляем управление громкостью в layout кнопок
+        controls_layout.addLayout(volume_control_layout)
 
         right_panel_layout.addLayout(controls_layout, 1)
 
@@ -205,10 +215,8 @@ class MusicPlayer(QWidget):
 
                 self.current_time_label.setText(self.format_time(current_time))
             elif self.media_player.get_state() == vlc.State.Ended:
-                # Автоматически воспроизводим следующий трек, когда текущий заканчивается
                 self.play_next_track()
-                # Если play_next_track не нашел следующий трек (например, пустой альбом или ошибка), тогда останавливаем
-                if self.media_player.get_state() == vlc.State.Ended:  # Все еще закончено после попытки воспроизвести следующий
+                if self.media_player.get_state() == vlc.State.Ended:
                     self.stop_music()
 
     def format_time(self, ms):
@@ -217,19 +225,17 @@ class MusicPlayer(QWidget):
         seconds %= 60
         return f"{minutes:02}:{seconds:02}"
 
-    def open_file(self, file_path):  # Теперь file_path обязателен
+    def open_file(self, file_path):
         if not file_path:
             print("Ошибка: Не указан путь к файлу для открытия.")
-            self.stop_music()  # Полный сброс, если путь не предоставлен
+            self.stop_music()
             return
 
-        # Останавливаем текущее воспроизведение VLC, но не сбрасываем контекст альбома
         if self.media_player.is_playing() or self.media_player.get_state() == vlc.State.Paused:
             self.media_player.stop()
 
         self.current_file = file_path
 
-        # Сброс информации о треке и обложки в UI
         self.title_label.setText("Название: -")
         self.artist_label.setText("Исполнитель: -")
         self.album_label.setText("Альбом: -")
@@ -237,21 +243,19 @@ class MusicPlayer(QWidget):
         self.cover_label.setPixmap(QPixmap())
         self.original_cover_pixmap = None
 
-        # Устанавливаем медиа для VLC плеера
         media = vlc.Media(self.current_file)
         self.media_player.set_media(media)
 
-        self.read_metadata(file_path)  # Читаем метаданные для нового файла
+        self.read_metadata(file_path)
 
         self.position_slider.setEnabled(True)
-        self.play_pause_button.setEnabled(True)  # Включаем кнопку воспроизведения/паузы
+        self.play_pause_button.setEnabled(True)
         self.prev_track_button.setEnabled(True)
         self.next_track_button.setEnabled(True)
 
-        # Запускаем парсинг медиа в отдельном потоке для получения длительности
         threading.Thread(target=self._parse_media_in_thread, args=(self.current_file,)).start()
 
-        self.play_music()  # Автоматически начинаем воспроизведение
+        self.play_music()
 
     def _parse_media_in_thread(self, file_path):
         try:
@@ -265,7 +269,6 @@ class MusicPlayer(QWidget):
             self.media_parsed_signal.emit(0)
 
     def _on_media_parsed(self, total_length_ms):
-        # Этот метод теперь только обновляет UI, медиа уже установлено в open_file
         self.total_length_ms = total_length_ms
         self.total_time_label.setText(self.format_time(self.total_length_ms))
         self.position_slider.setValue(0)
@@ -352,8 +355,7 @@ class MusicPlayer(QWidget):
 
         button_font_size = max(8, int(window_side * 0.007))
         font = QFont("Arial", button_font_size)
-        # self.open_button.setFont(font) # Кнопка удалена
-        self.play_pause_button.setFont(font)  # Обновляем шрифт для объединенной кнопки
+        self.play_pause_button.setFont(font)
         self.add_root_folder_button.setFont(font)
         self.back_button.setFont(font)
         self.prev_track_button.setFont(font)
@@ -380,22 +382,28 @@ class MusicPlayer(QWidget):
 
     def eventFilter(self, obj, event):
         """
-        Фильтр событий для обработки прокрутки колесика мыши на ползунке громкости.
+        Фильтр событий для обработки прокрутки колесика мыши на ползунке громкости
+        и для глобальной обработки нажатия клавиши пробел.
         """
         if obj == self.volume_slider and event.type() == QEvent.Wheel:
-            delta = event.angleDelta().y()  # Получаем дельту прокрутки (обычно 120 или -120)
+            delta = event.angleDelta().y()
             current_volume = self.volume_slider.value()
 
-            if delta > 0:  # Прокрутка вверх (увеличение громкости)
-                new_volume = min(100, current_volume + 5)  # Увеличиваем на 5, максимум 100
-            else:  # Прокрутка вниз (уменьшение громкости)
-                new_volume = max(0, current_volume - 5)  # Уменьшаем на 5, минимум 0
+            if delta > 0:
+                new_volume = min(100, current_volume + 5)
+            else:
+                new_volume = max(0, current_volume - 5)
 
-            self.volume_slider.setValue(new_volume)  # Обновляем значение ползунка
-            self.set_volume(new_volume)  # Устанавливаем громкость VLC
-            return True  # Событие обработано, не передаем дальше
+            self.volume_slider.setValue(new_volume)
+            self.set_volume(new_volume)
+            return True
 
-        return super().eventFilter(obj, event)  # Для других событий или объектов вызываем базовый фильтр
+            # Глобальная обработка нажатия клавиши пробел
+        if event.type() == QEvent.KeyPress and event.key() == Qt.Key_Space:
+            self.toggle_play_pause()
+            return True  # Потребляем событие, чтобы оно не передавалось дальше
+
+        return super().eventFilter(obj, event)
 
     def toggle_play_pause(self):
         """Переключает воспроизведение/паузу."""
@@ -408,14 +416,14 @@ class MusicPlayer(QWidget):
         if self.current_file:
             self.media_player.play()
             self.play_pause_button.setText("Пауза")
-            self.play_pause_button.setEnabled(True)  # Убедимся, что она включена
+            self.play_pause_button.setEnabled(True)
             self.timer.start()
 
     def pause_music(self):
         if self.media_player.is_playing():
             self.media_player.pause()
             self.play_pause_button.setText("Воспроизвести")
-            self.play_pause_button.setEnabled(True)  # Убедимся, что она включена
+            self.play_pause_button.setEnabled(True)
             self.timer.stop()
 
     def stop_music(self):
@@ -427,10 +435,10 @@ class MusicPlayer(QWidget):
         self.timer.stop()
 
         self.play_pause_button.setText("Воспроизвести")
-        self.play_pause_button.setEnabled(False)  # Отключаем, если нет файла
+        self.play_pause_button.setEnabled(False)
         self.prev_track_button.setEnabled(False)
         self.next_track_button.setEnabled(False)
-        self.current_album_tracks = []  # Сбрасываем контекст
+        self.current_album_tracks = []
         self.current_track_index = -1
 
     def set_position(self, position):
@@ -545,16 +553,16 @@ class MusicPlayer(QWidget):
 
             # Получаем список всех файлов в текущей папке/альбоме для навигации
             album_files = sorted([k for k, v in current_node.items() if isinstance(v, str)])
-            self.current_album_tracks = album_files  # Сохраняем полные имена файлов
+            self.current_album_tracks = album_files
 
             try:
                 self.current_track_index = self.current_album_tracks.index(full_file_name)
             except ValueError:
-                self.current_track_index = -1  # Должно быть найдено, если логика верна
+                self.current_track_index = -1
 
             full_path = current_node.get(full_file_name)
             if full_path:
-                self.open_file(full_path)  # Вызываем open_file, который теперь сам запускает воспроизведение
+                self.open_file(full_path)
             else:
                 print(f"Ошибка: Не удалось найти полный путь для файла: {full_file_name}")
         else:
@@ -578,7 +586,7 @@ class MusicPlayer(QWidget):
 
         next_index = self.current_track_index + 1
         if next_index >= len(self.current_album_tracks):
-            next_index = 0  # Зацикливаемся на первый трек, если достигнут конец
+            next_index = 0
 
         next_file_name = self.current_album_tracks[next_index]
 
@@ -589,8 +597,8 @@ class MusicPlayer(QWidget):
 
         full_path = current_node.get(next_file_name)
         if full_path:
-            self.current_track_index = next_index  # Обновляем индекс
-            self.open_file(full_path)  # Вызываем open_file, который теперь сам запускает воспроизведение
+            self.current_track_index = next_index
+            self.open_file(full_path)
         else:
             print(f"Ошибка: Не удалось найти следующий трек: {next_file_name}")
 
@@ -604,7 +612,7 @@ class MusicPlayer(QWidget):
 
         prev_index = self.current_track_index - 1
         if prev_index < 0:
-            prev_index = len(self.current_album_tracks) - 1  # Зацикливаемся на последний трек, если достигнуто начало
+            prev_index = len(self.current_album_tracks) - 1
 
         prev_file_name = self.current_album_tracks[prev_index]
 
@@ -615,8 +623,8 @@ class MusicPlayer(QWidget):
 
         full_path = current_node.get(prev_file_name)
         if full_path:
-            self.current_track_index = prev_index  # Обновляем индекс
-            self.open_file(full_path)  # Вызываем open_file, который теперь сам запускает воспроизведение
+            self.current_track_index = prev_index
+            self.open_file(full_path)
         else:
             print(f"Ошибка: Не удалось найти предыдущий трек: {prev_file_name}")
 
