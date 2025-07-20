@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
                              QHBoxLayout, QFileDialog, QLabel, QSlider, QSizePolicy, QListWidget, QListWidgetItem)
 from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize
-from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon  # Добавляем QIcon
+from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon
 import vlc
 from mutagen.mp3 import MP3
 from mutagen.flac import FLAC
@@ -46,9 +46,8 @@ class MusicPlayer(QWidget):
         self.setMinimumSize(1280, 720)
 
         # Установка иконки приложения
-        # !!! ЗАМЕНИТЕ 'path/to/your/icon.png' НА РЕАЛЬНЫЙ ПУТЬ К ВАШЕЙ ИКОНКЕ !!!
-        # Например: self.setWindowIcon(QIcon('icons/music_icon.png'))
-        self.setWindowIcon(QIcon('media\zsxdcvbnjm.ico'))
+        # Предполагается, что файл иконки 'icon.png' находится в папке 'media'
+        self.setWindowIcon(QIcon('media/icon.png'))
 
         self.media_player = vlc.MediaPlayer()
         self.current_file = None
@@ -62,10 +61,16 @@ class MusicPlayer(QWidget):
         self.init_ui()
         self.setup_timer()
 
+        # Устанавливаем начальную громкость (например, 50%)
+        # Эта строка перемещена после создания self.volume_slider в init_ui
+        # self.media_player.audio_set_volume(50)
+        # self.volume_slider.setValue(50) # Устанавливаем ползунок в начальное положение
+
         self.media_parsed_signal.connect(self._on_media_parsed)
         self.library_scan_finished_signal.connect(self._on_library_scan_finished)
 
     def init_ui(self):
+        # Главный горизонтальный макет, разделяющий окно на две панели
         root_layout = QHBoxLayout()
 
         # --- Левая панель (Библиотека) ---
@@ -149,6 +154,22 @@ class MusicPlayer(QWidget):
         self.stop_button.clicked.connect(self.stop_music)
         self.stop_button.setEnabled(False)
         controls_layout.addWidget(self.stop_button)
+
+        # --- Добавляем управление громкостью ---
+        volume_control_layout = QHBoxLayout()
+        self.volume_label = QLabel("Громкость: 50%")  # Начальное значение
+        volume_control_layout.addWidget(self.volume_label)
+
+        self.volume_slider = QSlider(Qt.Horizontal)
+        self.volume_slider.setRange(0, 100)  # Громкость от 0 до 100%
+        self.volume_slider.setValue(50)  # Начальное значение
+        self.volume_slider.sliderMoved.connect(self.set_volume)
+        volume_control_layout.addWidget(self.volume_slider)
+
+        # Устанавливаем фильтр событий для ползунка громкости
+        self.volume_slider.installEventFilter(self)
+
+        controls_layout.addLayout(volume_control_layout)  # Добавляем управление громкостью в layout кнопок
 
         right_panel_layout.addLayout(controls_layout, 1)
 
@@ -320,9 +341,8 @@ class MusicPlayer(QWidget):
         self.total_time_label.setFont(time_font)
 
         self.library_label.setFont(QFont("Arial", base_font_size, QFont.Bold))
-
-        # QListWidget не имеет прямого метода setFont для всех элементов сразу
-        # Шрифт для элементов списка устанавливается при их добавлении в _on_library_scan_finished
+        # Устанавливаем шрифт для метки громкости
+        self.volume_label.setFont(time_font)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
@@ -334,6 +354,25 @@ class MusicPlayer(QWidget):
             QTimer.singleShot(0, self._update_cover_display)
             QTimer.singleShot(0, self._update_font_sizes)
         super().changeEvent(event)
+
+    def eventFilter(self, obj, event):
+        """
+        Фильтр событий для обработки прокрутки колесика мыши на ползунке громкости.
+        """
+        if obj == self.volume_slider and event.type() == QEvent.Wheel:
+            delta = event.angleDelta().y()  # Получаем дельту прокрутки (обычно 120 или -120)
+            current_volume = self.volume_slider.value()
+
+            if delta > 0:  # Прокрутка вверх (увеличение громкости)
+                new_volume = min(100, current_volume + 5)  # Увеличиваем на 5, максимум 100
+            else:  # Прокрутка вниз (уменьшение громкости)
+                new_volume = max(0, current_volume - 5)  # Уменьшаем на 5, минимум 0
+
+            self.volume_slider.setValue(new_volume)  # Обновляем значение ползунка
+            self.set_volume(new_volume)  # Устанавливаем громкость VLC
+            return True  # Событие обработано, не передаем дальше
+
+        return super().eventFilter(obj, event)  # Для других событий или объектов вызываем базовый фильтр
 
     def play_music(self):
         if self.current_file:
@@ -372,6 +411,11 @@ class MusicPlayer(QWidget):
         if self.media_player.is_playing() and self.total_length_ms > 0:
             new_time_ms = int(self.total_length_ms * (position / 1000.0))
             self.media_player.set_time(new_time_ms)
+
+    def set_volume(self, volume):
+        """Устанавливает громкость медиаплеера и обновляет метку."""
+        self.media_player.audio_set_volume(volume)
+        self.volume_label.setText(f"Громкость: {volume}%")
 
     def open_library_folder(self):
         """Открывает диалог выбора папки и сканирует ее на наличие музыкальных файлов."""
