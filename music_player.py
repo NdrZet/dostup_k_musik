@@ -154,21 +154,21 @@ class MusicPlayer(QWidget):
 
         # --- Кнопки управления воспроизведением ---
         # Кнопка "Предыдущий"
-        self.prev_track_button = QPushButton("Предыдущий")
+        self.prev_track_button = QPushButton("⏮")  # Иконка "Предыдущий"
         self.prev_track_button.clicked.connect(self.play_previous_track)
         self.prev_track_button.setEnabled(False)
         self.prev_track_button.setFocusPolicy(Qt.NoFocus)
         controls_layout.addWidget(self.prev_track_button)
 
         # Объединенная кнопка "Воспроизвести/Пауза"
-        self.play_pause_button = QPushButton("Воспроизвести")
+        self.play_pause_button = QPushButton("▶️")  # Изначальная иконка "Воспроизвести"
         self.play_pause_button.clicked.connect(self.toggle_play_pause)
         self.play_pause_button.setEnabled(False)
         self.play_pause_button.setFocusPolicy(Qt.NoFocus)
         controls_layout.addWidget(self.play_pause_button)
 
         # Кнопка "Следующий"
-        self.next_track_button = QPushButton("Следующий")
+        self.next_track_button = QPushButton("⏭")  # Иконка "Следующий"
         self.next_track_button.clicked.connect(self.play_next_track)
         self.next_track_button.setEnabled(False)
         self.next_track_button.setFocusPolicy(Qt.NoFocus)
@@ -355,11 +355,16 @@ class MusicPlayer(QWidget):
 
         button_font_size = max(8, int(window_side * 0.007))
         font = QFont("Arial", button_font_size)
-        self.play_pause_button.setFont(font)
         self.add_root_folder_button.setFont(font)
         self.back_button.setFont(font)
-        self.prev_track_button.setFont(font)
-        self.next_track_button.setFont(font)
+
+        # Отдельный размер шрифта для кнопок воспроизведения/паузы и переключения треков
+        playback_button_font_size = max(12, int(window_side * 0.015))
+        playback_font = QFont("Arial", playback_button_font_size)
+
+        self.play_pause_button.setFont(playback_font)
+        self.prev_track_button.setFont(playback_font)
+        self.next_track_button.setFont(playback_font)
 
         time_label_font_size = max(8, int(window_side * 0.007))
         time_font = QFont("Arial", time_label_font_size)
@@ -415,14 +420,14 @@ class MusicPlayer(QWidget):
     def play_music(self):
         if self.current_file:
             self.media_player.play()
-            self.play_pause_button.setText("Пауза")
+            self.play_pause_button.setText("⏸️")  # Иконка "Пауза"
             self.play_pause_button.setEnabled(True)
             self.timer.start()
 
     def pause_music(self):
         if self.media_player.is_playing():
             self.media_player.pause()
-            self.play_pause_button.setText("Воспроизвести")
+            self.play_pause_button.setText("▶️")  # Иконка "Воспроизвести"
             self.play_pause_button.setEnabled(True)
             self.timer.stop()
 
@@ -434,7 +439,7 @@ class MusicPlayer(QWidget):
         self.total_time_label.setText("00:00")
         self.timer.stop()
 
-        self.play_pause_button.setText("Воспроизвести")
+        self.play_pause_button.setText("▶️")  # Иконка "Воспроизвести"
         self.play_pause_button.setEnabled(False)
         self.prev_track_button.setEnabled(False)
         self.next_track_button.setEnabled(False)
