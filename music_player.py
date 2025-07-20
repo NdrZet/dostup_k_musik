@@ -12,6 +12,70 @@ import io
 import threading
 import os
 
+# Общие стили для приложения
+app_stylesheet = """
+QWidget {
+    background-color: #444444; /* Общий фон приложения - серый */
+    color: white;
+}
+
+QLabel {
+    color: white;
+}
+
+QPushButton {
+    background-color: #333333;
+    color: white;
+    border: none;
+    padding: 8px 8px; /* Уменьшен padding для более компактных кнопок */
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #555555;
+}
+
+QPushButton:pressed {
+    background-color: #0056b3;
+}
+
+QPushButton:disabled {
+    background-color: #1a1a1a;
+    color: #888888;
+}
+
+QListWidget {
+    background-color: #222222;
+    color: white;
+    border: 1px solid #555555;
+    border-radius: 5px;
+}
+
+QListWidget::item:selected {
+    background-color: #007bff;
+    color: white;
+}
+
+QListWidget::item:hover {
+    background-color: #444444;
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #bbb;
+    background: white;
+    height: 8px;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background: #007bff;
+    border: 1px solid #007bff;
+    width: 18px;
+    margin: -5px 0;
+    border-radius: 4px; /* Изменен на 4px для квадратного ползунка */
+}
+"""
+
 
 # Новый пользовательский класс для квадратной метки обложки
 class SquareLabel(QLabel):
@@ -20,7 +84,7 @@ class SquareLabel(QLabel):
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.setAlignment(Qt.AlignCenter)
         self.setText("Нет обложки")
-        self.setStyleSheet("border: 1px solid #ccc;")
+        self.setStyleSheet("border: none;")  # Убрана обводка
 
     def heightForWidth(self, width):
         return width
@@ -45,8 +109,10 @@ class MusicPlayer(QWidget):
         self.setGeometry(100, 100, 1280, 720)
         self.setMinimumSize(1280, 720)
 
+        # Устанавливаем общую темную тему для окна из переменной app_stylesheet
+        self.setStyleSheet(app_stylesheet)
+
         # Установка иконки приложения
-        # Используем абсолютный путь для надежной загрузки иконки
         icon_path = os.path.join(os.path.dirname(__file__), 'media', 'zsxdcvbnjm.ico')
         try:
             self.setWindowIcon(QIcon(icon_path))
@@ -62,25 +128,24 @@ class MusicPlayer(QWidget):
         self.current_library_path = []
         self.root_library_folder = None
 
-        # Контекст для воспроизведения следующего/предыдущего трека
+        self.is_shuffling = False
+        self.is_repeating = False
+
         self.current_album_tracks = []
         self.current_track_index = -1
 
         self.init_ui()
         self.setup_timer()
 
-        # Устанавливаем начальную громкость (например, 50%)
         self.media_player.audio_set_volume(50)
         self.volume_slider.setValue(50)
 
         self.media_parsed_signal.connect(self._on_media_parsed)
         self.library_scan_finished_signal.connect(self._on_library_scan_finished)
 
-        # Устанавливаем фильтр событий на экземпляр QApplication для глобальной обработки клавиш
         QApplication.instance().installEventFilter(self)
 
     def init_ui(self):
-        # Главный горизонтальный макет, разделяющий окно на две панели
         root_layout = QHBoxLayout()
 
         # --- Левая панель (Библиотека) ---
@@ -91,19 +156,18 @@ class MusicPlayer(QWidget):
 
         self.add_root_folder_button = QPushButton("Добавить корневую папку")
         self.add_root_folder_button.clicked.connect(self.open_library_folder)
-        self.add_root_folder_button.setFocusPolicy(Qt.NoFocus)  # Убираем фокус с кнопки
+        self.add_root_folder_button.setFocusPolicy(Qt.NoFocus)
         left_panel_layout.addWidget(self.add_root_folder_button)
 
         self.back_button = QPushButton("Назад")
         self.back_button.clicked.connect(self._navigate_back)
         self.back_button.setEnabled(False)
-        self.back_button.setFocusPolicy(Qt.NoFocus)  # Убираем фокус с кнопки
+        self.back_button.setFocusPolicy(Qt.NoFocus)
         left_panel_layout.addWidget(self.back_button)
 
         self.library_list_widget = QListWidget()
         self.library_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.library_list_widget.itemClicked.connect(self.load_track_from_library)
-        # Оставляем фокус для QListWidget, так как он нужен для навигации по элементам
         left_panel_layout.addWidget(self.library_list_widget)
 
         root_layout.addLayout(left_panel_layout, 1)
@@ -111,71 +175,89 @@ class MusicPlayer(QWidget):
         # --- Правая панель (Плеер) ---
         right_panel_layout = QVBoxLayout()
 
+        # 1. Info layout (cover and track details) - Сверху
         info_layout = QHBoxLayout()
-
         self.cover_label = SquareLabel()
         self.cover_label.setMinimumSize(50, 50)
         info_layout.addWidget(self.cover_label)
-
         track_info_layout = QVBoxLayout()
         self.title_label = QLabel("Название: -")
         self.artist_label = QLabel("Исполнитель: -")
         self.album_label = QLabel("Альбом: -")
-
         self.title_label.setFont(QFont("Arial", 18, QFont.Bold))
         self.artist_label.setFont(QFont("Arial", 14))
         self.album_label.setFont(QFont("Arial", 14))
-
         track_info_layout.addWidget(self.title_label)
         track_info_layout.addWidget(self.artist_label)
         track_info_layout.addWidget(self.album_label)
         track_info_layout.addStretch(1)
-
         info_layout.addLayout(track_info_layout)
         right_panel_layout.addLayout(info_layout, 3)
 
+        right_panel_layout.addStretch(1)  # Добавляем растяжку, чтобы прижать контрольную панель к низу
+
+        # Новый контейнер для черной контрольной панели
+        self.control_panel_container = QWidget()
+        self.control_panel_container.setStyleSheet("background-color: black;")
+        control_panel_layout = QVBoxLayout(self.control_panel_container)
+        control_panel_layout.setContentsMargins(0, 0, 0, 0)  # Убираем отступы для полного растягивания
+
+        # 2. Playback controls row (shuffle, prev, play/pause, next, repeat) - Строго по центру
+        playback_controls_row_layout = QHBoxLayout()
+        playback_controls_row_layout.addStretch(1)
+
+        # Кнопки в порядке: Перемешать, Предыдущий, Воспроизвести/Пауза, Следующий, Повтор
+        self.shuffle_button = QPushButton("🔀")
+        self.shuffle_button.clicked.connect(self.toggle_shuffle)
+        self.shuffle_button.setFocusPolicy(Qt.NoFocus)
+        playback_controls_row_layout.addWidget(self.shuffle_button)
+
+        self.prev_track_button = QPushButton("⏮")
+        self.prev_track_button.clicked.connect(self.play_previous_track)
+        self.prev_track_button.setEnabled(False)
+        self.prev_track_button.setFocusPolicy(Qt.NoFocus)
+        playback_controls_row_layout.addWidget(self.prev_track_button)
+
+        self.play_pause_button = QPushButton("▶️")
+        self.play_pause_button.clicked.connect(self.toggle_play_pause)
+        self.play_pause_button.setEnabled(False)
+        self.play_pause_button.setFocusPolicy(Qt.NoFocus)
+        playback_controls_row_layout.addWidget(self.play_pause_button)
+
+        self.next_track_button = QPushButton("⏭")
+        self.next_track_button.clicked.connect(self.play_next_track)
+        self.next_track_button.setEnabled(False)
+        self.next_track_button.setFocusPolicy(Qt.NoFocus)
+        playback_controls_row_layout.addWidget(self.next_track_button)
+
+        self.repeat_button = QPushButton("🔁")
+        self.repeat_button.clicked.connect(self.toggle_repeat)
+        self.repeat_button.setFocusPolicy(Qt.NoFocus)
+        playback_controls_row_layout.addWidget(self.repeat_button)
+
+        playback_controls_row_layout.addStretch(1)
+        control_panel_layout.addLayout(playback_controls_row_layout)  # Добавляем в новый контейнер
+
+        # 3. Position slider
         self.position_slider = QSlider(Qt.Horizontal)
         self.position_slider.setRange(0, 1000)
         self.position_slider.sliderMoved.connect(self.set_position)
         self.position_slider.setEnabled(False)
-        # Оставляем фокус для QSlider, так как он нужен для перетаскивания
-        right_panel_layout.addWidget(self.position_slider, 1)
+        control_panel_layout.addWidget(self.position_slider)  # Добавляем в новый контейнер
 
+        # 4. Time labels
         time_layout = QHBoxLayout()
         self.current_time_label = QLabel("00:00")
         self.total_time_label = QLabel("00:00")
         time_layout.addWidget(self.current_time_label)
         time_layout.addStretch(1)
         time_layout.addWidget(self.total_time_label)
-        right_panel_layout.addLayout(time_layout, 1)
+        control_panel_layout.addLayout(time_layout)  # Добавляем в новый контейнер
 
-        controls_layout = QHBoxLayout()
-        # Кнопка "Открыть файл" удалена
+        # 5. Bottom-right volume control - Внизу справа
+        bottom_right_volume_container = QHBoxLayout()
+        bottom_right_volume_container.addStretch(1)
 
-        # --- Кнопки управления воспроизведением ---
-        # Кнопка "Предыдущий"
-        self.prev_track_button = QPushButton("⏮")  # Иконка "Предыдущий"
-        self.prev_track_button.clicked.connect(self.play_previous_track)
-        self.prev_track_button.setEnabled(False)
-        self.prev_track_button.setFocusPolicy(Qt.NoFocus)
-        controls_layout.addWidget(self.prev_track_button)
-
-        # Объединенная кнопка "Воспроизвести/Пауза"
-        self.play_pause_button = QPushButton("▶️")  # Изначальная иконка "Воспроизвести"
-        self.play_pause_button.clicked.connect(self.toggle_play_pause)
-        self.play_pause_button.setEnabled(False)
-        self.play_pause_button.setFocusPolicy(Qt.NoFocus)
-        controls_layout.addWidget(self.play_pause_button)
-
-        # Кнопка "Следующий"
-        self.next_track_button = QPushButton("⏭")  # Иконка "Следующий"
-        self.next_track_button.clicked.connect(self.play_next_track)
-        self.next_track_button.setEnabled(False)
-        self.next_track_button.setFocusPolicy(Qt.NoFocus)
-        controls_layout.addWidget(self.next_track_button)
-        # --- Конец кнопок управления воспроизведением ---
-
-        # --- Добавляем управление громкостью ---
         volume_control_layout = QHBoxLayout()
         self.volume_label = QLabel("Громкость: 50%")
         volume_control_layout.addWidget(self.volume_label)
@@ -184,20 +266,24 @@ class MusicPlayer(QWidget):
         self.volume_slider.setRange(0, 100)
         self.volume_slider.setValue(50)
         self.volume_slider.sliderMoved.connect(self.set_volume)
-        # Оставляем фокус для QSlider, так как он нужен для перетаскивания и колесика мыши
+        self.volume_slider.setFocusPolicy(Qt.NoFocus)
+        self.volume_slider.installEventFilter(self)
         volume_control_layout.addWidget(self.volume_slider)
 
-        # Устанавливаем фильтр событий для ползунка громкости
-        self.volume_slider.installEventFilter(self)
+        bottom_right_volume_container.addLayout(volume_control_layout)
+        control_panel_layout.addLayout(bottom_right_volume_container)  # Добавляем в новый контейнер
 
-        controls_layout.addLayout(volume_control_layout)
-
-        right_panel_layout.addLayout(controls_layout, 1)
+        right_panel_layout.addWidget(self.control_panel_container)  # Добавляем контейнер в правую панель
 
         root_layout.addLayout(right_panel_layout, 3)
 
         self.setLayout(root_layout)
         self._update_font_sizes()
+        self._update_button_style(self.shuffle_button, self.is_shuffling)
+        self._update_button_style(self.prev_track_button, False)
+        self._update_play_pause_button_style()
+        self._update_button_style(self.next_track_button, False)
+        self._update_button_style(self.repeat_button, self.is_repeating)
 
     def setup_timer(self):
         self.timer = QTimer(self)
@@ -207,14 +293,18 @@ class MusicPlayer(QWidget):
 
     def update_ui(self):
         if not self.position_slider.isSliderDown():
-            if self.media_player.is_playing() or self.media_player.get_state() == vlc.State.Paused:
+            current_state = self.media_player.get_state()
+            # _update_play_pause_button_style() теперь вызывается только при изменении состояния плеера
+            # чтобы избежать "дергания" кнопки.
+
+            if current_state == vlc.State.Playing or current_state == vlc.State.Paused:
                 current_time = self.media_player.get_time()
                 if self.total_length_ms > 0:
                     position = int((current_time / self.total_length_ms) * 1000)
                     self.position_slider.setValue(position)
 
                 self.current_time_label.setText(self.format_time(current_time))
-            elif self.media_player.get_state() == vlc.State.Ended:
+            elif current_state == vlc.State.Ended:
                 self.play_next_track()
                 if self.media_player.get_state() == vlc.State.Ended:
                     self.stop_music()
@@ -252,6 +342,8 @@ class MusicPlayer(QWidget):
         self.play_pause_button.setEnabled(True)
         self.prev_track_button.setEnabled(True)
         self.next_track_button.setEnabled(True)
+        self.shuffle_button.setEnabled(True)
+        self.repeat_button.setEnabled(True)
 
         threading.Thread(target=self._parse_media_in_thread, args=(self.current_file,)).start()
 
@@ -358,13 +450,25 @@ class MusicPlayer(QWidget):
         self.add_root_folder_button.setFont(font)
         self.back_button.setFont(font)
 
-        # Отдельный размер шрифта для кнопок воспроизведения/паузы и переключения треков
-        playback_button_font_size = max(12, int(window_side * 0.015))
+        # Увеличенный размер шрифта для кнопок воспроизведения/паузы и переключения треков
+        # Скорректирован размер шрифта для лучшего масштабирования
+        playback_button_font_size = max(16, int(window_side * 0.025))
         playback_font = QFont("Arial", playback_button_font_size)
 
         self.play_pause_button.setFont(playback_font)
         self.prev_track_button.setFont(playback_font)
         self.next_track_button.setFont(playback_font)
+        self.shuffle_button.setFont(playback_font)
+        self.repeat_button.setFont(playback_font)
+
+        # Устанавливаем фиксированный размер для кнопок управления воспроизведением
+        # Увеличенный фиксированный размер для лучшей видимости
+        button_fixed_size = max(40, int(window_side * 0.05))
+        self.play_pause_button.setFixedSize(button_fixed_size, button_fixed_size)
+        self.prev_track_button.setFixedSize(button_fixed_size, button_fixed_size)
+        self.next_track_button.setFixedSize(button_fixed_size, button_fixed_size)
+        self.shuffle_button.setFixedSize(button_fixed_size, button_fixed_size)
+        self.repeat_button.setFixedSize(button_fixed_size, button_fixed_size)
 
         time_label_font_size = max(8, int(window_side * 0.007))
         time_font = QFont("Arial", time_label_font_size)
@@ -373,6 +477,13 @@ class MusicPlayer(QWidget):
 
         self.library_label.setFont(QFont("Arial", base_font_size, QFont.Bold))
         self.volume_label.setFont(time_font)
+
+        # Обновляем стили кнопок после изменения размера шрифта
+        self._update_button_style(self.shuffle_button, self.is_shuffling)
+        self._update_button_style(self.prev_track_button, False)
+        self._update_play_pause_button_style()
+        self._update_button_style(self.next_track_button, False)
+        self._update_button_style(self.repeat_button, self.is_repeating)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
@@ -403,33 +514,39 @@ class MusicPlayer(QWidget):
             self.set_volume(new_volume)
             return True
 
-            # Глобальная обработка нажатия клавиши пробел
         if event.type() == QEvent.KeyPress and event.key() == Qt.Key_Space:
             self.toggle_play_pause()
-            return True  # Потребляем событие, чтобы оно не передавалось дальше
+            return True
 
         return super().eventFilter(obj, event)
 
     def toggle_play_pause(self):
         """Переключает воспроизведение/паузу."""
-        if self.media_player.is_playing():
+        if self.current_file is None:
+            return
+        # Проверяем текущее состояние медиаплеера
+        current_state = self.media_player.get_state()
+        if current_state == vlc.State.Playing:
             self.pause_music()
-        else:
+        elif current_state == vlc.State.Paused:
+            self.play_music()
+        else:  # Если плеер остановлен или еще не начал воспроизведение
             self.play_music()
 
     def play_music(self):
         if self.current_file:
             self.media_player.play()
-            self.play_pause_button.setText("⏸️")  # Иконка "Пауза"
+            self._update_play_pause_button_style()
             self.play_pause_button.setEnabled(True)
             self.timer.start()
 
     def pause_music(self):
-        if self.media_player.is_playing():
+        # Проверяем, играет ли медиа, чтобы правильно установить иконку
+        if self.media_player.get_state() == vlc.State.Playing:
             self.media_player.pause()
-            self.play_pause_button.setText("▶️")  # Иконка "Воспроизвести"
-            self.play_pause_button.setEnabled(True)
-            self.timer.stop()
+        self._update_play_pause_button_style()  # Обновляем стиль кнопки
+        self.play_pause_button.setEnabled(True)
+        self.timer.stop()
 
     def stop_music(self):
         """Останавливает воспроизведение и сбрасывает состояние плеера."""
@@ -439,10 +556,12 @@ class MusicPlayer(QWidget):
         self.total_time_label.setText("00:00")
         self.timer.stop()
 
-        self.play_pause_button.setText("▶️")  # Иконка "Воспроизвести"
+        self._update_play_pause_button_style()
         self.play_pause_button.setEnabled(False)
         self.prev_track_button.setEnabled(False)
         self.next_track_button.setEnabled(False)
+        self.shuffle_button.setEnabled(False)
+        self.repeat_button.setEnabled(False)
         self.current_album_tracks = []
         self.current_track_index = -1
 
@@ -455,6 +574,47 @@ class MusicPlayer(QWidget):
         """Устанавливает громкость медиаплеера и обновляет метку."""
         self.media_player.audio_set_volume(volume)
         self.volume_label.setText(f"Громкость: {volume}%")
+
+    def toggle_shuffle(self):
+        """Переключает режим перемешивания."""
+        self.is_shuffling = not self.is_shuffling
+        self._update_button_style(self.shuffle_button, self.is_shuffling)
+        print(f"Режим перемешивания: {'Включен' if self.is_shuffling else 'Выключен'}")
+
+    def toggle_repeat(self):
+        """Переключает режим повтора."""
+        self.is_repeating = not self.is_repeating
+        self._update_button_style(self.repeat_button, self.is_repeating)
+        print(f"Режим повтора: {'Включен' if self.is_repeating else 'Выключен'}")
+
+    def _update_button_style(self, button, is_active):
+        """Применяет стиль к кнопке в зависимости от ее состояния активности."""
+        # Используем текущий шрифт кнопки, чтобы сохранить размер, установленный в _update_font_sizes
+        current_font = button.font()
+        font_style = f"font-family: {current_font.family()}; font-size: {current_font.pointSize()}px;"
+
+        if is_active:
+            button.setStyleSheet(f"background-color: #007bff; {font_style}")
+        else:
+            button.setStyleSheet(f"background-color: #333333; {font_style}")
+
+    def _update_play_pause_button_style(self):
+        """Обновляет стиль и текст кнопки воспроизведения/паузы."""
+        # Используем текущий шрифт кнопки, чтобы сохранить размер, установленный в _update_font_sizes
+        current_font = self.play_pause_button.font()
+        font_style = f"font-family: {current_font.family()}; font-size: {current_font.pointSize()}px;"
+
+        current_state = self.media_player.get_state()
+
+        # Логика отображения иконки воспроизведения/паузы
+        if current_state == vlc.State.Playing:
+            self.play_pause_button.setText("⏸️")  # Если играет, показывать паузу
+            bg_color = "#007bff"  # Активный цвет
+        else:
+            self.play_pause_button.setText("▶️")  # Если на паузе/остановлено, показывать воспроизведение
+            bg_color = "#333333"  # Неактивный цвет
+
+        self.play_pause_button.setStyleSheet(f"background-color: {bg_color}; {font_style}")
 
     def open_library_folder(self):
         """Открывает диалог выбора папки и сканирует ее на наличие музыкальных файлов."""
@@ -556,7 +716,6 @@ class MusicPlayer(QWidget):
             for part in self.current_library_path:
                 current_node = current_node[part]
 
-            # Получаем список всех файлов в текущей папке/альбоме для навигации
             album_files = sorted([k for k, v in current_node.items() if isinstance(v, str)])
             self.current_album_tracks = album_files
 
@@ -595,7 +754,6 @@ class MusicPlayer(QWidget):
 
         next_file_name = self.current_album_tracks[next_index]
 
-        # Реконструируем полный путь для следующего трека
         current_node = self.library_data
         for part in self.current_library_path:
             current_node = current_node[part]
@@ -621,7 +779,6 @@ class MusicPlayer(QWidget):
 
         prev_file_name = self.current_album_tracks[prev_index]
 
-        # Реконструируем полный путь для предыдущего трека
         current_node = self.library_data
         for part in self.current_library_path:
             current_node = current_node[part]
