@@ -53,9 +53,17 @@ QSlider::sub-page:horizontal {
     border-radius: 4px;
 }
 
+/* Стиль для контейнера левой панели */
+QWidget#leftPanel {
+    background-color: #121212; /* Немного светлее основного фона для выделения */
+    border-top-left-radius: 30px; /* Скругление верхнего левого угла */
+    border-bottom-left-radius: 30px; /* Скругление нижнего левого угла */
+    border-right: 2px solid #333333; /* Граница справа для отделения от правой панели */
+}
+
 QListWidget {
     background-color: #121212; /* Очень темный фон для списка */
-    border: 2px solid #333333;
+    border: 0px solid #333333;
     border-radius: 15px;
     padding: 5px;
 }

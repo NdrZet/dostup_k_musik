@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
                              QHBoxLayout, QFileDialog, QLabel, QSlider, QSizePolicy, QListWidget, QListWidgetItem)
-from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize
+from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize, QSettings  # Добавлен QSettings
 from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon, QPainter, QBrush, QPainterPath
 import vlc
 from mutagen.mp3 import MP3
@@ -200,8 +200,12 @@ class MusicPlayer(QWidget):
     def __init__(self):
         super().__init__()
         setup_logging()  # Инициализируем логирование при запуске приложения
+
+        # Инициализация QSettings для сохранения/загрузки настроек
+        self.settings = QSettings("MyMusicPlayer", "MusicPlayerApp")  # Имя организации, Имя приложения
+
         self.setWindowTitle("ДОСТУП К МУЗЫКЕ")
-        self.setGeometry(100, 100, 1280, 720)
+        # self.setGeometry(100, 100, 1280, 720) # Удалено, так как будет максимизировано
         self.setMinimumSize(1280, 720)
 
         self.setStyleSheet(app_stylesheet)
@@ -250,11 +254,30 @@ class MusicPlayer(QWidget):
 
         QApplication.instance().installEventFilter(self)
 
+        # Загрузка последней выбранной папки при запуске
+        last_folder = self.settings.value("last_music_folder", "", type=str)
+        if last_folder and os.path.isdir(last_folder):
+            logging.info(f"Загрузка последней папки: {last_folder}")
+            self.root_library_folder = last_folder
+            self.library_list_widget.clear()
+            self.library_data.clear()
+            self.current_library_path = []
+            self.back_button.setEnabled(False)
+            threading.Thread(target=self._scan_music_folder_in_thread,
+                             args=(last_folder, self.supported_extensions)).start()
+        else:
+            logging.info("Последняя папка не найдена или недействительна.")
+
+        self.showMaximized()  # Открываем приложение в полном размере
+
     def init_ui(self):
         root_layout = QHBoxLayout()
 
         # --- Левая панель (Библиотека) ---
-        left_panel_layout = QVBoxLayout()
+        self.left_panel_widget = QWidget()  # Создаем контейнер для левой панели
+        self.left_panel_widget.setObjectName("leftPanel")  # Устанавливаем objectName для CSS стилизации
+        left_panel_layout = QVBoxLayout(self.left_panel_widget)  # Макет для контейнера левой панели
+        left_panel_layout.setContentsMargins(15, 15, 15, 15)  # Отступы внутри контейнера
 
         self.library_label = QLabel("Моя Музыкальная Библиотека")
         left_panel_layout.addWidget(self.library_label)
@@ -275,7 +298,7 @@ class MusicPlayer(QWidget):
         self.library_list_widget.itemClicked.connect(self.load_track_from_library)
         left_panel_layout.addWidget(self.library_list_widget)
 
-        root_layout.addLayout(left_panel_layout, 1)
+        root_layout.addWidget(self.left_panel_widget, 1)  # Добавляем контейнер левой панели в корневой макет
 
         # --- Правая панель (Плеер) ---
         right_panel_layout = QVBoxLayout()
@@ -764,6 +787,7 @@ class MusicPlayer(QWidget):
         folder_path = QFileDialog.getExistingDirectory(self, "Выбрать корневую папку с музыкой")
         if folder_path:
             self.root_library_folder = folder_path
+            self.settings.setValue("last_music_folder", folder_path)  # Сохраняем выбранную папку
             self.library_list_widget.clear()
             self.library_data.clear()
             self.current_library_path = []
@@ -844,7 +868,7 @@ class MusicPlayer(QWidget):
 
             # --- Логика для папок исполнителей (поиск файла изображения в папке) ---
             found_artist_image_file = False
-            for ext in self.image_extensions:
+            for ext in ['.png', '.jpg', '.jpeg', '.gif', '.bmp']:
                 artist_image_path = os.path.join(folder_full_path, folder_name + ext)
                 if os.path.exists(artist_image_path):
                     item_image_data = artist_image_path
@@ -1025,7 +1049,7 @@ class MusicPlayer(QWidget):
         else:
             logging.error(f"Ошибка: Не удалось найти полный путь для файла: {next_file_name}")
 
-    def play_previous_track(self):  # Исправлено: удалена лишняя скобка
+    def play_previous_track(self):
         """
         Воспроизводит предыдущий трек в текущем альбоме/папке.
         """
