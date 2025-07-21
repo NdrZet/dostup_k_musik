@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
                              QHBoxLayout, QFileDialog, QLabel, QSlider, QSizePolicy, QListWidget, QListWidgetItem)
-from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize, QSettings  # Добавлен QSettings
+from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize, QSettings
 from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon, QPainter, QBrush, QPainterPath
 import vlc
 from mutagen.mp3 import MP3
@@ -11,26 +11,21 @@ from mutagen.id3 import ID3NoHeaderError
 import io
 import threading
 import os
-import logging  # Импортируем модуль логирования
+import logging
 
-# Импортируем Pillow для обработки изображений
 from PIL import Image, ImageDraw
 
-# Импортируем стили из отдельного файла
 from styles import app_stylesheet
-
-# Импортируем функцию настройки логирования
 from logger_config import setup_logging
 
 
-# Новый пользовательский класс для квадратной метки обложки
 class SquareLabel(QLabel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.setAlignment(Qt.AlignCenter)
         self.setText("Нет обложки")
-        self.setStyleSheet("border: none;")  # Убрана обводка
+        self.setStyleSheet("border: none;")
 
     def heightForWidth(self, width):
         return width
@@ -45,7 +40,6 @@ class SquareLabel(QLabel):
         return QSize(side, side)
 
 
-# Новый класс для элементов списка библиотеки
 class ListItemWidget(QWidget):
     def __init__(self, text, image_data=None, font=None, parent=None, item_type="unknown"):
         super().__init__(parent)
@@ -128,35 +122,28 @@ class ListItemWidget(QWidget):
                 logging.debug(
                     f"ListItemWidget: Target size for '{self.text_label.text()}': {target_width}x{target_height}.")
 
+                # Resize the image to the exact target size
+                pil_image = pil_image.resize((target_width, target_height), Image.LANCZOS)
+                logging.debug(
+                    f"ListItemWidget: Resized PIL Image to exact target size for '{self.text_label.text()}' (New size: {pil_image.width}x{pil_image.height}).")
+
                 # Create a circular mask
-                mask = Image.new('L', (target_width, target_height), 0)  # 'L' for grayscale mask
+                mask = Image.new('L', (target_width, target_height), 0)
                 draw = ImageDraw.Draw(mask)
-                draw.ellipse((0, 0, target_width, target_height), fill=255)  # Draw white circle on black background
+                draw.ellipse((0, 0, target_width, target_height), fill=255)
                 logging.debug(f"ListItemWidget: Created circular mask for '{self.text_label.text()}'.")
 
-                # Resize the original image to fit the target size, maintaining aspect ratio
-                # and expanding to cover the circle
-                # Use Image.LANCZOS for high-quality downsampling
-                pil_image.thumbnail((target_width, target_height), Image.LANCZOS)
-                logging.debug(
-                    f"ListItemWidget: Resized PIL Image thumbnail for '{self.text_label.text()}' (New size: {pil_image.width}x{pil_image.height}).")
-
-                # Create a new image with transparent background
+                # Apply the mask
                 final_pil_image = Image.new('RGBA', (target_width, target_height), (0, 0, 0, 0))
-
-                # Calculate paste position to center the thumbnail
-                paste_x = (target_width - pil_image.width) // 2
-                paste_y = (target_height - pil_image.height) // 2
-
-                final_pil_image.paste(pil_image, (paste_x, paste_y), mask)
-                logging.debug(f"ListItemWidget: Pasted PIL Image with mask for '{self.text_label.text()}'.")
+                final_pil_image.paste(pil_image, (0, 0), mask)
+                logging.debug(
+                    f"ListItemWidget: Pasted resized PIL Image with mask onto transparent canvas for '{self.text_label.text()}'.")
 
                 # Convert PIL Image to QImage manually
-                # Get raw bytes and dimensions
                 img_bytes = final_pil_image.tobytes("raw", "RGBA")
                 img_width = final_pil_image.width
                 img_height = final_pil_image.height
-                bytes_per_line = 4 * img_width  # 4 bytes per pixel for RGBA
+                bytes_per_line = 4 * img_width
 
                 qimage_from_pil = QImage(img_bytes, img_width, img_height, bytes_per_line, QImage.Format_RGBA8888)
 
@@ -199,13 +186,11 @@ class MusicPlayer(QWidget):
 
     def __init__(self):
         super().__init__()
-        setup_logging()  # Инициализируем логирование при запуске приложения
+        setup_logging()
 
-        # Инициализация QSettings для сохранения/загрузки настроек
-        self.settings = QSettings("MyMusicPlayer", "MusicPlayerApp")  # Имя организации, Имя приложения
+        self.settings = QSettings("MyMusicPlayer", "MusicPlayerApp")
 
         self.setWindowTitle("ДОСТУП К МУЗЫКЕ")
-        # self.setGeometry(100, 100, 1280, 720) # Удалено, так как будет максимизировано
         self.setMinimumSize(1280, 720)
 
         self.setStyleSheet(app_stylesheet)
@@ -254,7 +239,6 @@ class MusicPlayer(QWidget):
 
         QApplication.instance().installEventFilter(self)
 
-        # Загрузка последней выбранной папки при запуске
         last_folder = self.settings.value("last_music_folder", "", type=str)
         if last_folder and os.path.isdir(last_folder):
             logging.info(f"Загрузка последней папки: {last_folder}")
@@ -268,16 +252,15 @@ class MusicPlayer(QWidget):
         else:
             logging.info("Последняя папка не найдена или недействительна.")
 
-        self.showMaximized()  # Открываем приложение в полном размере
+        self.showMaximized()
 
     def init_ui(self):
         root_layout = QHBoxLayout()
 
-        # --- Левая панель (Библиотека) ---
-        self.left_panel_widget = QWidget()  # Создаем контейнер для левой панели
-        self.left_panel_widget.setObjectName("leftPanel")  # Устанавливаем objectName для CSS стилизации
-        left_panel_layout = QVBoxLayout(self.left_panel_widget)  # Макет для контейнера левой панели
-        left_panel_layout.setContentsMargins(15, 15, 15, 15)  # Отступы внутри контейнера
+        self.left_panel_widget = QWidget()
+        self.left_panel_widget.setObjectName("leftPanel")
+        left_panel_layout = QVBoxLayout(self.left_panel_widget)
+        left_panel_layout.setContentsMargins(15, 15, 15, 15)
 
         self.library_label = QLabel("Моя Музыкальная Библиотека")
         left_panel_layout.addWidget(self.library_label)
@@ -298,18 +281,15 @@ class MusicPlayer(QWidget):
         self.library_list_widget.itemClicked.connect(self.load_track_from_library)
         left_panel_layout.addWidget(self.library_list_widget)
 
-        root_layout.addWidget(self.left_panel_widget, 1)  # Добавляем контейнер левой панели в корневой макет
+        root_layout.addWidget(self.left_panel_widget, 1)
 
-        # --- Правая панель (Плеер) ---
         right_panel_layout = QVBoxLayout()
 
-        # 1. Info layout (cover and track details) - Сверху
         info_layout = QHBoxLayout()
         self.cover_label = SquareLabel()
         self.cover_label.setMinimumSize(50, 50)
         info_layout.addWidget(self.cover_label)
 
-        # Новый лейбл для фотографии артиста
         self.artist_image_label = SquareLabel()
         self.artist_image_label.setText("Нет фото артиста")
         info_layout.addWidget(self.artist_image_label)
@@ -330,17 +310,14 @@ class MusicPlayer(QWidget):
 
         right_panel_layout.addStretch(1)
 
-        # Новый контейнер для черной контрольной панели
         self.control_panel_container = QWidget()
         self.control_panel_container.setStyleSheet("background-color: black;")
         control_panel_layout = QVBoxLayout(self.control_panel_container)
         control_panel_layout.setContentsMargins(0, 0, 0, 0)
 
-        # 2. Playback controls row (shuffle, prev, play/pause, next, repeat) - Строго по центру
         playback_controls_row_layout = QHBoxLayout()
         playback_controls_row_layout.addStretch(1)
 
-        # Кнопки в порядке: Перемешать, Предыдущий, Воспроизвести/Пауза, Следующий, Повтор
         self.shuffle_button = QPushButton()
         self.shuffle_button.clicked.connect(self.toggle_shuffle)
         self.shuffle_button.setFocusPolicy(Qt.NoFocus)
@@ -372,14 +349,12 @@ class MusicPlayer(QWidget):
         playback_controls_row_layout.addStretch(1)
         control_panel_layout.addLayout(playback_controls_row_layout)
 
-        # 3. Position slider
         self.position_slider = QSlider(Qt.Horizontal)
         self.position_slider.setRange(0, 1000)
         self.position_slider.sliderMoved.connect(self.set_position)
         self.position_slider.setEnabled(False)
         control_panel_layout.addWidget(self.position_slider)
 
-        # 4. Time labels
         time_layout = QHBoxLayout()
         self.current_time_label = QLabel("00:00")
         self.total_time_label = QLabel("00:00")
@@ -388,7 +363,6 @@ class MusicPlayer(QWidget):
         time_layout.addWidget(self.total_time_label)
         control_panel_layout.addLayout(time_layout)
 
-        # 5. Bottom-right volume control - Внизу справа
         bottom_right_volume_container = QHBoxLayout()
         bottom_right_volume_container.addStretch(1)
 
@@ -413,7 +387,6 @@ class MusicPlayer(QWidget):
 
         self.setLayout(root_layout)
         self._update_font_sizes()
-        # Инициализируем иконки для кнопок
         self.shuffle_button.setIcon(QIcon(self.shuffle_icon_path))
         self.prev_track_button.setIcon(QIcon(self.prev_icon_path))
         self.next_track_button.setIcon(QIcon(self.next_icon_path))
@@ -534,7 +507,6 @@ class MusicPlayer(QWidget):
                 self.artist_label.setText(f"Исполнитель: {artist}")
                 self.album_label.setText(f"Альбом: {album}")
 
-                # Загрузка обложки альбома
                 pixmap = QPixmap()
                 if file_path.lower().endswith('.mp3'):
                     for tag in audio.getall('APIC'):
@@ -553,7 +525,6 @@ class MusicPlayer(QWidget):
 
                 self._update_cover_display()
 
-                # Загрузка фотографии артиста
                 dir_name = os.path.dirname(file_path)
                 artist_folder_name = os.path.basename(dir_name)
 
@@ -787,7 +758,7 @@ class MusicPlayer(QWidget):
         folder_path = QFileDialog.getExistingDirectory(self, "Выбрать корневую папку с музыкой")
         if folder_path:
             self.root_library_folder = folder_path
-            self.settings.setValue("last_music_folder", folder_path)  # Сохраняем выбранную папку
+            self.settings.setValue("last_music_folder", folder_path)
             self.library_list_widget.clear()
             self.library_data.clear()
             self.current_library_path = []
@@ -856,7 +827,7 @@ class MusicPlayer(QWidget):
             current_level_full_path = self.root_library_folder
             logging.info("Недействительный путь к библиотеке, сброс до корня.")
 
-        list_item_font_size = max(8, int(min(self.width(), self.height()) * 0.006))
+        list_item_font_size = max(8, int(min(self.width(), self.height()) * 0.007))  # Увеличен множитель
         list_item_font = QFont("Arial", list_item_font_size)
 
         folders = sorted([k for k, v in current_node.items() if isinstance(v, dict)])
@@ -866,7 +837,6 @@ class MusicPlayer(QWidget):
 
             logging.debug(f"Processing folder: {folder_full_path}")
 
-            # --- Логика для папок исполнителей (поиск файла изображения в папке) ---
             found_artist_image_file = False
             for ext in ['.png', '.jpg', '.jpeg', '.gif', '.bmp']:
                 artist_image_path = os.path.join(folder_full_path, folder_name + ext)
@@ -876,13 +846,11 @@ class MusicPlayer(QWidget):
                     logging.debug(f"Found artist image file for '{folder_name}' at: {artist_image_path}")
                     break
 
-            # --- Логика для папок альбомов (извлечение из музыкальных файлов) ---
             if not found_artist_image_file:
                 logging.debug(
                     f"No dedicated artist image file found for '{folder_name}'. Attempting to extract from audio files.")
                 found_audio_file_for_cover = False
                 try:
-                    # Iterate through files in the current folder to find an audio file with cover art
                     for file_inner in os.listdir(folder_full_path):
                         audio_file_path = os.path.join(folder_full_path, file_inner)
                         logging.debug(f"Checking file for cover: {audio_file_path}")
@@ -898,7 +866,7 @@ class MusicPlayer(QWidget):
                                 if audio:
                                     if audio_file_path.lower().endswith('.mp3'):
                                         for tag in audio.getall('APIC'):
-                                            if tag.type == 3:  # Front Cover
+                                            if tag.type == 3:
                                                 item_image_data = tag.data
                                                 found_audio_file_for_cover = True
                                                 logging.debug(
@@ -906,7 +874,7 @@ class MusicPlayer(QWidget):
                                                 break
                                     elif audio_file_path.lower().endswith('.flac') and audio.pictures:
                                         for pic in audio.pictures:
-                                            if pic.type == 3:  # Front Cover
+                                            if pic.type == 3:
                                                 item_image_data = pic.data
                                                 found_audio_file_for_cover = True
                                                 logging.debug(
@@ -918,7 +886,7 @@ class MusicPlayer(QWidget):
                                 logging.debug(f"Error reading metadata for album cover from {audio_file_path}: {e}")
 
                             if found_audio_file_for_cover:
-                                break  # Stop searching for cover in this folder
+                                break
                 except FileNotFoundError:
                     logging.debug(f"Folder not found: {folder_full_path}")
                 except Exception as e:
@@ -934,7 +902,6 @@ class MusicPlayer(QWidget):
         files = sorted([k for k, v in current_node.items() if isinstance(v, str)])
         for file_name in files:
             display_name = os.path.splitext(file_name)[0]
-            # Для отдельных треков извлекаем обложку из самого трека
             track_cover_data = None
             full_file_path = os.path.join(current_level_full_path, file_name)
             logging.debug(f"Checking file for track cover: {full_file_path}")
@@ -948,13 +915,13 @@ class MusicPlayer(QWidget):
                 if audio:
                     if full_file_path.lower().endswith('.mp3'):
                         for tag in audio.getall('APIC'):
-                            if tag.type == 3:  # Front Cover
+                            if tag.type == 3:
                                 track_cover_data = tag.data
                                 logging.debug(f"Found MP3 cover data for track {file_name}")
                                 break
                     elif full_file_path.lower().endswith('.flac') and audio.pictures:
                         for pic in audio.pictures:
-                            if pic.type == 3:  # Front Cover
+                            if pic.type == 3:
                                 track_cover_data = pic.data
                                 logging.debug(f"Found FLAC cover data for track {file_name}")
                                 break
