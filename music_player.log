@@ -1,0 +1,678 @@
+2025-07-21 11:26:45,195 - root - INFO - Система логирования настроена.
+2025-07-21 11:26:54,231 - root - DEBUG - Processing folder: E:/Music'a\Ado
+2025-07-21 11:26:54,232 - root - DEBUG - Found artist image file for 'Ado' at: E:/Music'a\Ado\Ado.png
+2025-07-21 11:26:54,232 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado' (item_type: folder)
+2025-07-21 11:26:54,232 - root - DEBUG - ListItemWidget: Image data is path: 'E:/Music'a\Ado\Ado.png'.
+2025-07-21 11:26:54,243 - PIL.PngImagePlugin - DEBUG - STREAM b'IHDR' 16 13
+2025-07-21 11:26:54,244 - PIL.PngImagePlugin - DEBUG - STREAM b'cHRM' 41 32
+2025-07-21 11:26:54,244 - PIL.PngImagePlugin - DEBUG - STREAM b'bKGD' 85 6
+2025-07-21 11:26:54,244 - PIL.PngImagePlugin - DEBUG - b'bKGD' 85 6 (unknown)
+2025-07-21 11:26:54,244 - PIL.PngImagePlugin - DEBUG - STREAM b'IDAT' 103 32768
+2025-07-21 11:26:54,244 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from path 'E:/Music'a\Ado\Ado.png' for 'Ado' (Size: 1000x1000)
+2025-07-21 11:26:54,253 - PIL.PngImagePlugin - DEBUG - STREAM b'tEXt' 806225 37
+2025-07-21 11:26:54,253 - PIL.PngImagePlugin - DEBUG - STREAM b'tEXt' 806274 37
+2025-07-21 11:26:54,253 - PIL.PngImagePlugin - DEBUG - STREAM b'tEXt' 806323 40
+2025-07-21 11:26:54,255 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado'.
+2025-07-21 11:26:54,255 - root - DEBUG - ListItemWidget: Target size for 'Ado': 50x50.
+2025-07-21 11:26:54,255 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado'.
+2025-07-21 11:26:54,262 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado' (New size: 50x50).
+2025-07-21 11:26:54,263 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado'.
+2025-07-21 11:26:54,263 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado' using PIL and manual QImage conversion.
+2025-07-21 11:26:54,265 - root - DEBUG - Processing folder: E:/Music'a\Alan Walker
+2025-07-21 11:26:54,265 - root - DEBUG - No dedicated artist image file found for 'Alan Walker'. Attempting to extract from audio files.
+2025-07-21 11:26:54,265 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\All Around The World (La La La) (Alan Walker Remix)
+2025-07-21 11:26:54,265 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Different World
+2025-07-21 11:26:54,265 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Faded (Remixes)
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Neon Nights
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Not You
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Origins
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Slowed
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Sorry (feat. ISÁK)
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Sped up
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Walkerverse Pt. II
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Walkerverse, Pt. I
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Walkerworld
+2025-07-21 11:26:54,266 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\Who I Am EP
+2025-07-21 11:26:54,267 - root - DEBUG - Checking file for cover: E:/Music'a\Alan Walker\World Of Walker
+2025-07-21 11:26:54,267 - root - DEBUG - ListItemWidget: Attempting to load image for 'Alan Walker' (item_type: folder)
+2025-07-21 11:26:54,267 - root - DEBUG - ListItemWidget: No valid image data provided for 'Alan Walker'.
+2025-07-21 11:26:54,267 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Alan Walker', item_type: folder
+2025-07-21 11:26:54,268 - root - DEBUG - Processing folder: E:/Music'a\BURNOUT SYNDROMES
+2025-07-21 11:26:54,268 - root - DEBUG - No dedicated artist image file found for 'BURNOUT SYNDROMES'. Attempting to extract from audio files.
+2025-07-21 11:26:54,268 - root - DEBUG - Checking file for cover: E:/Music'a\BURNOUT SYNDROMES\Lemon
+2025-07-21 11:26:54,269 - root - DEBUG - Checking file for cover: E:/Music'a\BURNOUT SYNDROMES\Maoh
+2025-07-21 11:26:54,269 - root - DEBUG - ListItemWidget: Attempting to load image for 'BURNOUT SYNDROMES' (item_type: folder)
+2025-07-21 11:26:54,269 - root - DEBUG - ListItemWidget: No valid image data provided for 'BURNOUT SYNDROMES'.
+2025-07-21 11:26:54,269 - root - DEBUG - ListItemWidget: Displaying placeholder for 'BURNOUT SYNDROMES', item_type: folder
+2025-07-21 11:26:54,270 - root - DEBUG - Processing folder: E:/Music'a\Black Myth꞉ Wukong Soundtrack Collection [FLAC]
+2025-07-21 11:26:54,270 - root - DEBUG - No dedicated artist image file found for 'Black Myth꞉ Wukong Soundtrack Collection [FLAC]'. Attempting to extract from audio files.
+2025-07-21 11:26:54,270 - root - DEBUG - Checking file for cover: E:/Music'a\Black Myth꞉ Wukong Soundtrack Collection [FLAC]\2022 - The Web
+2025-07-21 11:26:54,270 - root - DEBUG - Checking file for cover: E:/Music'a\Black Myth꞉ Wukong Soundtrack Collection [FLAC]\2024 - Black Myth꞉ Wukong (Orchestra Concert Commemorative Album)
+2025-07-21 11:26:54,271 - root - DEBUG - Checking file for cover: E:/Music'a\Black Myth꞉ Wukong Soundtrack Collection [FLAC]\2024 - Black Myth꞉ Wukong (Soundtrack Selection)
+2025-07-21 11:26:54,271 - root - DEBUG - Checking file for cover: E:/Music'a\Black Myth꞉ Wukong Soundtrack Collection [FLAC]\2024 - Black Myth꞉ Wukong (Soundtrack Selection) [Extended]
+2025-07-21 11:26:54,271 - root - DEBUG - ListItemWidget: Attempting to load image for 'Black Myth꞉ Wukong Soundtrack Collection [FLAC]' (item_type: folder)
+2025-07-21 11:26:54,271 - root - DEBUG - ListItemWidget: No valid image data provided for 'Black Myth꞉ Wukong Soundtrack Collection [FLAC]'.
+2025-07-21 11:26:54,271 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Black Myth꞉ Wukong Soundtrack Collection [FLAC]', item_type: folder
+2025-07-21 11:26:54,272 - root - DEBUG - Processing folder: E:/Music'a\Creepy Nuts
+2025-07-21 11:26:54,272 - root - DEBUG - No dedicated artist image file found for 'Creepy Nuts'. Attempting to extract from audio files.
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Bareru!
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Case
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Creep Show
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Ensemble Play
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\INDIES COMPLETE
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Joendanyusho
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Koukou Debut,Daigaku Debut,Zennbu Shippaishitakedo Major Debut
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Nidone  Bling-Bang-Bang-Born
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Tarinai Futari
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\To Us Former Prodigies
+2025-07-21 11:26:54,273 - root - DEBUG - Checking file for cover: E:/Music'a\Creepy Nuts\Yofukashino Uta
+2025-07-21 11:26:54,274 - root - DEBUG - ListItemWidget: Attempting to load image for 'Creepy Nuts' (item_type: folder)
+2025-07-21 11:26:54,274 - root - DEBUG - ListItemWidget: No valid image data provided for 'Creepy Nuts'.
+2025-07-21 11:26:54,274 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Creepy Nuts', item_type: folder
+2025-07-21 11:26:54,274 - root - DEBUG - Processing folder: E:/Music'a\Elden Ring Soundtrack Collection [FLAC]
+2025-07-21 11:26:54,275 - root - DEBUG - No dedicated artist image file found for 'Elden Ring Soundtrack Collection [FLAC]'. Attempting to extract from audio files.
+2025-07-21 11:26:54,275 - root - DEBUG - Checking file for cover: E:/Music'a\Elden Ring Soundtrack Collection [FLAC]\2022 - Elden Ring (Original Game Soundtrack)
+2025-07-21 11:26:54,275 - root - DEBUG - Checking file for cover: E:/Music'a\Elden Ring Soundtrack Collection [FLAC]\2024 - Elden Ring꞉ Shadow of the Erdtree (Original Soundtrack)
+2025-07-21 11:26:54,275 - root - DEBUG - ListItemWidget: Attempting to load image for 'Elden Ring Soundtrack Collection [FLAC]' (item_type: folder)
+2025-07-21 11:26:54,275 - root - DEBUG - ListItemWidget: No valid image data provided for 'Elden Ring Soundtrack Collection [FLAC]'.
+2025-07-21 11:26:54,275 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Elden Ring Soundtrack Collection [FLAC]', item_type: folder
+2025-07-21 11:26:54,276 - root - DEBUG - Processing folder: E:/Music'a\Eve
+2025-07-21 11:26:54,276 - root - DEBUG - No dedicated artist image file found for 'Eve'. Attempting to extract from audio files.
+2025-07-21 11:26:54,276 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Blue
+2025-07-21 11:26:54,276 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Bokurano
+2025-07-21 11:26:54,276 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Eve Vocaloid 01
+2025-07-21 11:26:54,277 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Gunjo Sanka  Yuseiboushi
+2025-07-21 11:26:54,277 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Kaikai Kitan  Ao No Waltz
+2025-07-21 11:26:54,277 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Kaizin
+2025-07-21 11:26:54,277 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Otogi
+2025-07-21 11:26:54,277 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Smile
+2025-07-21 11:26:54,277 - root - DEBUG - Checking file for cover: E:/Music'a\Eve\Under Blue
+2025-07-21 11:26:54,277 - root - DEBUG - ListItemWidget: Attempting to load image for 'Eve' (item_type: folder)
+2025-07-21 11:26:54,277 - root - DEBUG - ListItemWidget: No valid image data provided for 'Eve'.
+2025-07-21 11:26:54,277 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Eve', item_type: folder
+2025-07-21 11:26:54,278 - root - DEBUG - Processing folder: E:/Music'a\King Gnu
+2025-07-21 11:26:54,278 - root - DEBUG - No dedicated artist image file found for 'King Gnu'. Attempting to extract from audio files.
+2025-07-21 11:26:54,278 - root - DEBUG - Checking file for cover: E:/Music'a\King Gnu\Ceremony
+2025-07-21 11:26:54,278 - root - DEBUG - Checking file for cover: E:/Music'a\King Gnu\King Gnu Dome Tour THE GREATEST UNKNOWN at TOKYO DOME
+2025-07-21 11:26:54,278 - root - DEBUG - Checking file for cover: E:/Music'a\King Gnu\Sympa
+2025-07-21 11:26:54,279 - root - DEBUG - Checking file for cover: E:/Music'a\King Gnu\THE GREATEST UNKNOWN
+2025-07-21 11:26:54,279 - root - DEBUG - Checking file for cover: E:/Music'a\King Gnu\Tokyo Rendez-Vous
+2025-07-21 11:26:54,279 - root - DEBUG - ListItemWidget: Attempting to load image for 'King Gnu' (item_type: folder)
+2025-07-21 11:26:54,279 - root - DEBUG - ListItemWidget: No valid image data provided for 'King Gnu'.
+2025-07-21 11:26:54,279 - root - DEBUG - ListItemWidget: Displaying placeholder for 'King Gnu', item_type: folder
+2025-07-21 11:26:54,280 - root - DEBUG - Processing folder: E:/Music'a\MYTH & ROID
+2025-07-21 11:26:54,280 - root - DEBUG - No dedicated artist image file found for 'MYTH & ROID'. Attempting to extract from audio files.
+2025-07-21 11:26:54,280 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\ENDING THEME FROM TV SERIES ”MADE IN ABYSS THE GOLDEN CITY OF THE SCORCHING SUN” ENDLESS EMBRACE
+2025-07-21 11:26:54,280 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\eYe's
+2025-07-21 11:26:54,280 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\MYTH & ROID Concept mini album 〈Episode 1〉『AZUL』
+2025-07-21 11:26:54,280 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\MYTH & ROID Concept mini album 〈Episode 2〉『VERDE』
+2025-07-21 11:26:54,280 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\MYTH & ROID ベストアルバム「MUSEUM-THE BEST OF MYTH & ROID-」
+2025-07-21 11:26:54,280 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\OPENING THEME FROM TV SERIES ”SHINCHO YUSHA”
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TV SERIES ISEKAI CHEAT MAGICIAN OPENING THEME「PANTA RHEI」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「Reゼロから始める異世界生活」エンディングテーマ「STYX HELIX」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「オーバーロードⅡ」エンディングテーマ「HYDRA」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「オーバーロードⅢ」オープニングテーマ「VORACITY」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「オーバーロード」エンディングテーマ「L.L.L.」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「ブギーポップは笑わない」オープニングテーマ「shadowgraph」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「ブブキ・ブランキ」エンディングテーマ「ANGERANGER」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\TVアニメ「幼女戦記」オープニングテーマ「JINGO JUNGLE」
+2025-07-21 11:26:54,281 - root - DEBUG - Checking file for cover: E:/Music'a\MYTH & ROID\💽 Album TVアニメ「Reゼロから始める異世界生活」後期オープニングテーマ「Paradisus-Paradoxum」
+2025-07-21 11:26:54,282 - root - DEBUG - ListItemWidget: Attempting to load image for 'MYTH & ROID' (item_type: folder)
+2025-07-21 11:26:54,282 - root - DEBUG - ListItemWidget: No valid image data provided for 'MYTH & ROID'.
+2025-07-21 11:26:54,282 - root - DEBUG - ListItemWidget: Displaying placeholder for 'MYTH & ROID', item_type: folder
+2025-07-21 11:26:54,282 - root - DEBUG - Processing folder: E:/Music'a\OxT
+2025-07-21 11:26:54,283 - root - DEBUG - No dedicated artist image file found for 'OxT'. Attempting to extract from audio files.
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\Everlasting Dream
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\Golden After School
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\Hello New World
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\Number One
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\OPEING THEME FROM TV SERIES ”OVERLORD IV”
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\OPENING THEME FROM TV SERIES ”THE EMINENCE IN SHADOW”
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\OPENING THEME FROM TV SERIES”PRINCE OF STRIDE ALTERNATIVE” STRIDER'S HIGH
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\OPENING THEME FROM ”OVERLORD” CLATTANOIA
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\O×T Complete Songs TV Anime Ace of Diamond
+2025-07-21 11:26:54,283 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\Reunion
+2025-07-21 11:26:54,284 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\Ssss. Gridman OP Theme Song Union
+2025-07-21 11:26:54,284 - root - DEBUG - Checking file for cover: E:/Music'a\OxT\TVアニメ「オーバーロードⅡ」オープニングテーマ「GO CRY GO」
+2025-07-21 11:26:54,284 - root - DEBUG - ListItemWidget: Attempting to load image for 'OxT' (item_type: folder)
+2025-07-21 11:26:54,284 - root - DEBUG - ListItemWidget: No valid image data provided for 'OxT'.
+2025-07-21 11:26:54,284 - root - DEBUG - ListItemWidget: Displaying placeholder for 'OxT', item_type: folder
+2025-07-21 11:26:54,285 - root - DEBUG - Processing folder: E:/Music'a\Pegasus Music Studio
+2025-07-21 11:26:54,285 - root - DEBUG - No dedicated artist image file found for 'Pegasus Music Studio'. Attempting to extract from audio files.
+2025-07-21 11:26:54,285 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Andromeda
+2025-07-21 11:26:54,285 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Art Is Life
+2025-07-21 11:26:54,285 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Awakening Monster
+2025-07-21 11:26:54,285 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Best Memories
+2025-07-21 11:26:54,285 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Breath of Nature
+2025-07-21 11:26:54,285 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Call of the Future
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Dark Fractal
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Echoes of the Future
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Eternal Flame
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\From Dark to Light
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Frozen Star
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Future Is Near
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Gravitation Lost
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Humanitron
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Hyperborea
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Infinity Chaos
+2025-07-21 11:26:54,286 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Kind Miracle
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Last Survivor
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Light of Flame
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Magic of Life
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Moment of Truth
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Pandora
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Phenomena
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Predictor
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Prometheus
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Solar Flash
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Technogenesis
+2025-07-21 11:26:54,287 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\The Native Nebula
+2025-07-21 11:26:54,288 - root - DEBUG - Checking file for cover: E:/Music'a\Pegasus Music Studio\Voices of the Earth
+2025-07-21 11:26:54,288 - root - DEBUG - ListItemWidget: Attempting to load image for 'Pegasus Music Studio' (item_type: folder)
+2025-07-21 11:26:54,288 - root - DEBUG - ListItemWidget: No valid image data provided for 'Pegasus Music Studio'.
+2025-07-21 11:26:54,288 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Pegasus Music Studio', item_type: folder
+2025-07-21 11:26:54,288 - root - DEBUG - Processing folder: E:/Music'a\Ryokuoushoku Shaka
+2025-07-21 11:26:54,289 - root - DEBUG - No dedicated artist image file found for 'Ryokuoushoku Shaka'. Attempting to extract from audio files.
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Actor
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\ADORE
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Afureta Mizuno Yukue
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Be a flower
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Hiwa Mata Noboru Kara
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Kesshou
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Litmus
+2025-07-21 11:26:54,289 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Michi Wo Yuke
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Nice To Meet You
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Party!!
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\pink blue
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Ryokuoushokushakai
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Shiawase - EP
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Shout Baby
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Singalong
+2025-07-21 11:26:54,290 - root - DEBUG - Checking file for cover: E:/Music'a\Ryokuoushoku Shaka\Summer Time Cinderella
+2025-07-21 11:26:54,290 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ryokuoushoku Shaka' (item_type: folder)
+2025-07-21 11:26:54,291 - root - DEBUG - ListItemWidget: No valid image data provided for 'Ryokuoushoku Shaka'.
+2025-07-21 11:26:54,291 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Ryokuoushoku Shaka', item_type: folder
+2025-07-21 11:26:54,291 - root - DEBUG - Processing folder: E:/Music'a\VK Blanka
+2025-07-21 11:26:54,291 - root - DEBUG - No dedicated artist image file found for 'VK Blanka'. Attempting to extract from audio files.
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\BEST ALBUM SUPERVILLAIN
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\BYE
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\FATE
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\HEY
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\Knightclub
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\VK Blanka LIVE HOUSE TOUR 2023
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\wizard
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\Worldfly
+2025-07-21 11:26:54,292 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\ミラージュ
+2025-07-21 11:26:54,293 - root - DEBUG - Checking file for cover: E:/Music'a\VK Blanka\夏の夢WALK Special Edition
+2025-07-21 11:26:54,293 - root - DEBUG - ListItemWidget: Attempting to load image for 'VK Blanka' (item_type: folder)
+2025-07-21 11:26:54,293 - root - DEBUG - ListItemWidget: No valid image data provided for 'VK Blanka'.
+2025-07-21 11:26:54,293 - root - DEBUG - ListItemWidget: Displaying placeholder for 'VK Blanka', item_type: folder
+2025-07-21 11:26:54,294 - root - DEBUG - Processing folder: E:/Music'a\Village People
+2025-07-21 11:26:54,294 - root - DEBUG - No dedicated artist image file found for 'Village People'. Attempting to extract from audio files.
+2025-07-21 11:26:54,294 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\Can't Stop the Music (Original Soundtrack 1980)
+2025-07-21 11:26:54,294 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\Go West In the Navy (Original Album 1979)
+2025-07-21 11:26:54,294 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\In the Street (2002 Remastered Version)
+2025-07-21 11:26:54,294 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\Renaissance
+2025-07-21 11:26:54,294 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\San Francisco Macho Man (Original Album 1978)
+2025-07-21 11:26:54,295 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\Sex Over the Phone (Original Album 1985)
+2025-07-21 11:26:54,295 - root - DEBUG - Checking file for cover: E:/Music'a\Village People\YMCA (Original Album 1978)
+2025-07-21 11:26:54,295 - root - DEBUG - ListItemWidget: Attempting to load image for 'Village People' (item_type: folder)
+2025-07-21 11:26:54,295 - root - DEBUG - ListItemWidget: No valid image data provided for 'Village People'.
+2025-07-21 11:26:54,295 - root - DEBUG - ListItemWidget: Displaying placeholder for 'Village People', item_type: folder
+2025-07-21 11:26:54,296 - root - DEBUG - Processing folder: E:/Music'a\YOASOBI
+2025-07-21 11:26:54,296 - root - DEBUG - No dedicated artist image file found for 'YOASOBI'. Attempting to extract from audio files.
+2025-07-21 11:26:54,296 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\E-SIDE
+2025-07-21 11:26:54,296 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\E-SIDE 2
+2025-07-21 11:26:54,296 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\E-SIDE 3
+2025-07-21 11:26:54,297 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\THE BOOK
+2025-07-21 11:26:54,297 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\THE BOOK 2
+2025-07-21 11:26:54,297 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\THE BOOK 3
+2025-07-21 11:26:54,297 - root - DEBUG - Checking file for cover: E:/Music'a\YOASOBI\はじめての - E
+2025-07-21 11:26:54,297 - root - DEBUG - ListItemWidget: Attempting to load image for 'YOASOBI' (item_type: folder)
+2025-07-21 11:26:54,297 - root - DEBUG - ListItemWidget: No valid image data provided for 'YOASOBI'.
+2025-07-21 11:26:54,297 - root - DEBUG - ListItemWidget: Displaying placeholder for 'YOASOBI', item_type: folder
+2025-07-21 11:26:54,298 - root - DEBUG - Processing folder: E:/Music'a\ZAQ
+2025-07-21 11:26:54,298 - root - DEBUG - No dedicated artist image file found for 'ZAQ'. Attempting to extract from audio files.
+2025-07-21 11:26:54,298 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\Akumu
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\ASEED
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\Dance In The Game
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\Follow Your Way
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\Magic Silver EP
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\Minimal Experience
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\Minor Piece
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\ZAQPOT
+2025-07-21 11:26:54,299 - root - DEBUG - Checking file for cover: E:/Music'a\ZAQ\｢ﾄﾘﾆﾃｨｾﾌﾞﾝ｣劇場第2弾主題歌｢Against The Abyss｣
+2025-07-21 11:26:54,300 - root - DEBUG - ListItemWidget: Attempting to load image for 'ZAQ' (item_type: folder)
+2025-07-21 11:26:54,300 - root - DEBUG - ListItemWidget: No valid image data provided for 'ZAQ'.
+2025-07-21 11:26:54,300 - root - DEBUG - ListItemWidget: Displaying placeholder for 'ZAQ', item_type: folder
+2025-07-21 11:26:55,115 - root - DEBUG - Processing folder: E:/Music'a\Ado\Ado Ready For My Show Playlist
+2025-07-21 11:26:55,116 - root - DEBUG - No dedicated artist image file found for 'Ado Ready For My Show Playlist'. Attempting to extract from audio files.
+2025-07-21 11:26:55,116 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Aishite Aishite Aishite.flac
+2025-07-21 11:26:55,117 - root - DEBUG - Found FLAC cover data for Ado Ready For My Show Playlist from E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Aishite Aishite Aishite.flac
+2025-07-21 11:26:55,117 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado Ready For My Show Playlist' (item_type: folder)
+2025-07-21 11:26:55,117 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,117 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado Ready For My Show Playlist' (Size: 1000x1000)
+2025-07-21 11:26:55,125 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado Ready For My Show Playlist'.
+2025-07-21 11:26:55,126 - root - DEBUG - ListItemWidget: Target size for 'Ado Ready For My Show Playlist': 50x50.
+2025-07-21 11:26:55,126 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado Ready For My Show Playlist'.
+2025-07-21 11:26:55,134 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado Ready For My Show Playlist' (New size: 50x50).
+2025-07-21 11:26:55,134 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado Ready For My Show Playlist'.
+2025-07-21 11:26:55,134 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado Ready For My Show Playlist' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,135 - root - DEBUG - Processing folder: E:/Music'a\Ado\Ado's Utattemita Album
+2025-07-21 11:26:55,136 - root - DEBUG - No dedicated artist image file found for 'Ado's Utattemita Album'. Attempting to extract from audio files.
+2025-07-21 11:26:55,136 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Ado's Utattemita Album\Ado - Aishite Aishite Aishite.flac
+2025-07-21 11:26:55,137 - root - DEBUG - Found FLAC cover data for Ado's Utattemita Album from E:/Music'a\Ado\Ado's Utattemita Album\Ado - Aishite Aishite Aishite.flac
+2025-07-21 11:26:55,137 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado's Utattemita Album' (item_type: folder)
+2025-07-21 11:26:55,137 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,137 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado's Utattemita Album' (Size: 1000x1000)
+2025-07-21 11:26:55,148 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado's Utattemita Album'.
+2025-07-21 11:26:55,148 - root - DEBUG - ListItemWidget: Target size for 'Ado's Utattemita Album': 50x50.
+2025-07-21 11:26:55,148 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado's Utattemita Album'.
+2025-07-21 11:26:55,158 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado's Utattemita Album' (New size: 50x50).
+2025-07-21 11:26:55,158 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado's Utattemita Album'.
+2025-07-21 11:26:55,158 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado's Utattemita Album' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,160 - root - DEBUG - Processing folder: E:/Music'a\Ado\Episode X
+2025-07-21 11:26:55,160 - root - DEBUG - No dedicated artist image file found for 'Episode X'. Attempting to extract from audio files.
+2025-07-21 11:26:55,160 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Episode X\Ado - Episode X.flac
+2025-07-21 11:26:55,161 - root - DEBUG - Found FLAC cover data for Episode X from E:/Music'a\Ado\Episode X\Ado - Episode X.flac
+2025-07-21 11:26:55,161 - root - DEBUG - ListItemWidget: Attempting to load image for 'Episode X' (item_type: folder)
+2025-07-21 11:26:55,161 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,161 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Episode X' (Size: 1000x1000)
+2025-07-21 11:26:55,170 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Episode X'.
+2025-07-21 11:26:55,170 - root - DEBUG - ListItemWidget: Target size for 'Episode X': 50x50.
+2025-07-21 11:26:55,170 - root - DEBUG - ListItemWidget: Created circular mask for 'Episode X'.
+2025-07-21 11:26:55,178 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Episode X' (New size: 50x50).
+2025-07-21 11:26:55,178 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Episode X'.
+2025-07-21 11:26:55,178 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Episode X' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,179 - root - DEBUG - Processing folder: E:/Music'a\Ado\Kyougen
+2025-07-21 11:26:55,179 - root - DEBUG - No dedicated artist image file found for 'Kyougen'. Attempting to extract from audio files.
+2025-07-21 11:26:55,179 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Kyougen\Ado - FREEDOM.flac
+2025-07-21 11:26:55,180 - root - DEBUG - Found FLAC cover data for Kyougen from E:/Music'a\Ado\Kyougen\Ado - FREEDOM.flac
+2025-07-21 11:26:55,180 - root - DEBUG - ListItemWidget: Attempting to load image for 'Kyougen' (item_type: folder)
+2025-07-21 11:26:55,180 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,180 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Kyougen' (Size: 800x800)
+2025-07-21 11:26:55,185 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Kyougen'.
+2025-07-21 11:26:55,185 - root - DEBUG - ListItemWidget: Target size for 'Kyougen': 50x50.
+2025-07-21 11:26:55,185 - root - DEBUG - ListItemWidget: Created circular mask for 'Kyougen'.
+2025-07-21 11:26:55,190 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Kyougen' (New size: 50x50).
+2025-07-21 11:26:55,191 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Kyougen'.
+2025-07-21 11:26:55,191 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Kyougen' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,191 - root - DEBUG - Processing folder: E:/Music'a\Ado\Sakura Biyori and Time Machine with Hatsune Miku  Shoka
+2025-07-21 11:26:55,192 - root - DEBUG - No dedicated artist image file found for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka'. Attempting to extract from audio files.
+2025-07-21 11:26:55,192 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Sakura Biyori and Time Machine with Hatsune Miku  Shoka\Ado - Sakura Biyori and Time Machine with Hatsune Miku.flac
+2025-07-21 11:26:55,192 - root - DEBUG - Found FLAC cover data for Sakura Biyori and Time Machine with Hatsune Miku  Shoka from E:/Music'a\Ado\Sakura Biyori and Time Machine with Hatsune Miku  Shoka\Ado - Sakura Biyori and Time Machine with Hatsune Miku.flac
+2025-07-21 11:26:55,192 - root - DEBUG - ListItemWidget: Attempting to load image for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka' (item_type: folder)
+2025-07-21 11:26:55,192 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,193 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka' (Size: 1000x1000)
+2025-07-21 11:26:55,200 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka'.
+2025-07-21 11:26:55,200 - root - DEBUG - ListItemWidget: Target size for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka': 50x50.
+2025-07-21 11:26:55,201 - root - DEBUG - ListItemWidget: Created circular mask for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka'.
+2025-07-21 11:26:55,208 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka' (New size: 50x50).
+2025-07-21 11:26:55,208 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka'.
+2025-07-21 11:26:55,208 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Sakura Biyori and Time Machine with Hatsune Miku  Shoka' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,209 - root - DEBUG - Processing folder: E:/Music'a\Ado\Show LP
+2025-07-21 11:26:55,209 - root - DEBUG - No dedicated artist image file found for 'Show LP'. Attempting to extract from audio files.
+2025-07-21 11:26:55,209 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Show LP\Ado - Show (A Cappella).flac
+2025-07-21 11:26:55,210 - root - DEBUG - Found FLAC cover data for Show LP from E:/Music'a\Ado\Show LP\Ado - Show (A Cappella).flac
+2025-07-21 11:26:55,210 - root - DEBUG - ListItemWidget: Attempting to load image for 'Show LP' (item_type: folder)
+2025-07-21 11:26:55,210 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,210 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Show LP' (Size: 1000x1000)
+2025-07-21 11:26:55,219 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Show LP'.
+2025-07-21 11:26:55,219 - root - DEBUG - ListItemWidget: Target size for 'Show LP': 50x50.
+2025-07-21 11:26:55,219 - root - DEBUG - ListItemWidget: Created circular mask for 'Show LP'.
+2025-07-21 11:26:55,228 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Show LP' (New size: 50x50).
+2025-07-21 11:26:55,228 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Show LP'.
+2025-07-21 11:26:55,228 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Show LP' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,229 - root - DEBUG - Processing folder: E:/Music'a\Ado\Take Me to the Beach
+2025-07-21 11:26:55,230 - root - DEBUG - No dedicated artist image file found for 'Take Me to the Beach'. Attempting to extract from audio files.
+2025-07-21 11:26:55,230 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Take Me to the Beach\Imagine Dragons feat Ado  - Take Me to the Beach.flac
+2025-07-21 11:26:55,230 - root - DEBUG - Found FLAC cover data for Take Me to the Beach from E:/Music'a\Ado\Take Me to the Beach\Imagine Dragons feat Ado  - Take Me to the Beach.flac
+2025-07-21 11:26:55,230 - root - DEBUG - ListItemWidget: Attempting to load image for 'Take Me to the Beach' (item_type: folder)
+2025-07-21 11:26:55,230 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,231 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Take Me to the Beach' (Size: 1000x1000)
+2025-07-21 11:26:55,237 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Take Me to the Beach'.
+2025-07-21 11:26:55,237 - root - DEBUG - ListItemWidget: Target size for 'Take Me to the Beach': 50x50.
+2025-07-21 11:26:55,237 - root - DEBUG - ListItemWidget: Created circular mask for 'Take Me to the Beach'.
+2025-07-21 11:26:55,245 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Take Me to the Beach' (New size: 50x50).
+2025-07-21 11:26:55,245 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Take Me to the Beach'.
+2025-07-21 11:26:55,245 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Take Me to the Beach' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,246 - root - DEBUG - Processing folder: E:/Music'a\Ado\UTA'S SONGS ONE PIECE FILM RED
+2025-07-21 11:26:55,246 - root - DEBUG - No dedicated artist image file found for 'UTA'S SONGS ONE PIECE FILM RED'. Attempting to extract from audio files.
+2025-07-21 11:26:55,246 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\UTA'S SONGS ONE PIECE FILM RED\Ado - Backlight.flac
+2025-07-21 11:26:55,247 - root - DEBUG - Found FLAC cover data for UTA'S SONGS ONE PIECE FILM RED from E:/Music'a\Ado\UTA'S SONGS ONE PIECE FILM RED\Ado - Backlight.flac
+2025-07-21 11:26:55,247 - root - DEBUG - ListItemWidget: Attempting to load image for 'UTA'S SONGS ONE PIECE FILM RED' (item_type: folder)
+2025-07-21 11:26:55,247 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,247 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'UTA'S SONGS ONE PIECE FILM RED' (Size: 800x800)
+2025-07-21 11:26:55,254 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'UTA'S SONGS ONE PIECE FILM RED'.
+2025-07-21 11:26:55,254 - root - DEBUG - ListItemWidget: Target size for 'UTA'S SONGS ONE PIECE FILM RED': 50x50.
+2025-07-21 11:26:55,254 - root - DEBUG - ListItemWidget: Created circular mask for 'UTA'S SONGS ONE PIECE FILM RED'.
+2025-07-21 11:26:55,259 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'UTA'S SONGS ONE PIECE FILM RED' (New size: 50x50).
+2025-07-21 11:26:55,259 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'UTA'S SONGS ONE PIECE FILM RED'.
+2025-07-21 11:26:55,259 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'UTA'S SONGS ONE PIECE FILM RED' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,259 - root - DEBUG - Processing folder: E:/Music'a\Ado\Usseewa (Piano Version)
+2025-07-21 11:26:55,260 - root - DEBUG - No dedicated artist image file found for 'Usseewa (Piano Version)'. Attempting to extract from audio files.
+2025-07-21 11:26:55,260 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Usseewa (Piano Version)\Ado - Usseewa (Piano Version).flac
+2025-07-21 11:26:55,260 - root - DEBUG - Found FLAC cover data for Usseewa (Piano Version) from E:/Music'a\Ado\Usseewa (Piano Version)\Ado - Usseewa (Piano Version).flac
+2025-07-21 11:26:55,261 - root - DEBUG - ListItemWidget: Attempting to load image for 'Usseewa (Piano Version)' (item_type: folder)
+2025-07-21 11:26:55,261 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,261 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Usseewa (Piano Version)' (Size: 1000x1000)
+2025-07-21 11:26:55,268 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Usseewa (Piano Version)'.
+2025-07-21 11:26:55,268 - root - DEBUG - ListItemWidget: Target size for 'Usseewa (Piano Version)': 50x50.
+2025-07-21 11:26:55,268 - root - DEBUG - ListItemWidget: Created circular mask for 'Usseewa (Piano Version)'.
+2025-07-21 11:26:55,276 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Usseewa (Piano Version)' (New size: 50x50).
+2025-07-21 11:26:55,276 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Usseewa (Piano Version)'.
+2025-07-21 11:26:55,276 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Usseewa (Piano Version)' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,277 - root - DEBUG - Processing folder: E:/Music'a\Ado\Zanmu
+2025-07-21 11:26:55,277 - root - DEBUG - No dedicated artist image file found for 'Zanmu'. Attempting to extract from audio files.
+2025-07-21 11:26:55,277 - root - DEBUG - Checking file for cover: E:/Music'a\Ado\Zanmu\Ado - 0.flac
+2025-07-21 11:26:55,278 - root - DEBUG - Found FLAC cover data for Zanmu from E:/Music'a\Ado\Zanmu\Ado - 0.flac
+2025-07-21 11:26:55,278 - root - DEBUG - ListItemWidget: Attempting to load image for 'Zanmu' (item_type: folder)
+2025-07-21 11:26:55,278 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,278 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Zanmu' (Size: 1000x1000)
+2025-07-21 11:26:55,285 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Zanmu'.
+2025-07-21 11:26:55,285 - root - DEBUG - ListItemWidget: Target size for 'Zanmu': 50x50.
+2025-07-21 11:26:55,285 - root - DEBUG - ListItemWidget: Created circular mask for 'Zanmu'.
+2025-07-21 11:26:55,292 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Zanmu' (New size: 50x50).
+2025-07-21 11:26:55,293 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Zanmu'.
+2025-07-21 11:26:55,293 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Zanmu' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,834 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Aishite Aishite Aishite.flac
+2025-07-21 11:26:55,835 - root - DEBUG - Found FLAC cover data for track Ado - Aishite Aishite Aishite.flac
+2025-07-21 11:26:55,835 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Aishite Aishite Aishite' (item_type: file)
+2025-07-21 11:26:55,835 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,835 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Aishite Aishite Aishite' (Size: 1000x1000)
+2025-07-21 11:26:55,843 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Aishite Aishite Aishite'.
+2025-07-21 11:26:55,843 - root - DEBUG - ListItemWidget: Target size for 'Ado - Aishite Aishite Aishite': 50x50.
+2025-07-21 11:26:55,843 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Aishite Aishite Aishite'.
+2025-07-21 11:26:55,851 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Aishite Aishite Aishite' (New size: 50x50).
+2025-07-21 11:26:55,851 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Aishite Aishite Aishite'.
+2025-07-21 11:26:55,851 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Aishite Aishite Aishite' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,852 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - All Night Radio_(0).flac
+2025-07-21 11:26:55,852 - root - DEBUG - Found FLAC cover data for track Ado - All Night Radio_(0).flac
+2025-07-21 11:26:55,853 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - All Night Radio_(0)' (item_type: file)
+2025-07-21 11:26:55,853 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,853 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - All Night Radio_(0)' (Size: 1000x1000)
+2025-07-21 11:26:55,860 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - All Night Radio_(0)'.
+2025-07-21 11:26:55,860 - root - DEBUG - ListItemWidget: Target size for 'Ado - All Night Radio_(0)': 50x50.
+2025-07-21 11:26:55,861 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - All Night Radio_(0)'.
+2025-07-21 11:26:55,868 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - All Night Radio_(0)' (New size: 50x50).
+2025-07-21 11:26:55,868 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - All Night Radio_(0)'.
+2025-07-21 11:26:55,868 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - All Night Radio_(0)' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,869 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Ashura-chan.flac
+2025-07-21 11:26:55,869 - root - DEBUG - Found FLAC cover data for track Ado - Ashura-chan.flac
+2025-07-21 11:26:55,870 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Ashura-chan' (item_type: file)
+2025-07-21 11:26:55,870 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,870 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Ashura-chan' (Size: 1000x1000)
+2025-07-21 11:26:55,877 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Ashura-chan'.
+2025-07-21 11:26:55,878 - root - DEBUG - ListItemWidget: Target size for 'Ado - Ashura-chan': 50x50.
+2025-07-21 11:26:55,878 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Ashura-chan'.
+2025-07-21 11:26:55,885 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Ashura-chan' (New size: 50x50).
+2025-07-21 11:26:55,885 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Ashura-chan'.
+2025-07-21 11:26:55,885 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Ashura-chan' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,886 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Backlight (UTA from ONE PIECE FILM RED).flac
+2025-07-21 11:26:55,886 - root - DEBUG - Found FLAC cover data for track Ado - Backlight (UTA from ONE PIECE FILM RED).flac
+2025-07-21 11:26:55,887 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Backlight (UTA from ONE PIECE FILM RED)' (item_type: file)
+2025-07-21 11:26:55,887 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,887 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Backlight (UTA from ONE PIECE FILM RED)' (Size: 1000x1000)
+2025-07-21 11:26:55,895 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Backlight (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:55,895 - root - DEBUG - ListItemWidget: Target size for 'Ado - Backlight (UTA from ONE PIECE FILM RED)': 50x50.
+2025-07-21 11:26:55,895 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Backlight (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:55,903 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Backlight (UTA from ONE PIECE FILM RED)' (New size: 50x50).
+2025-07-21 11:26:55,903 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Backlight (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:55,903 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Backlight (UTA from ONE PIECE FILM RED)' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,904 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Chocolat Cadabra_(0).flac
+2025-07-21 11:26:55,904 - root - DEBUG - Found FLAC cover data for track Ado - Chocolat Cadabra_(0).flac
+2025-07-21 11:26:55,904 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Chocolat Cadabra_(0)' (item_type: file)
+2025-07-21 11:26:55,905 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,905 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Chocolat Cadabra_(0)' (Size: 1000x1000)
+2025-07-21 11:26:55,912 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Chocolat Cadabra_(0)'.
+2025-07-21 11:26:55,912 - root - DEBUG - ListItemWidget: Target size for 'Ado - Chocolat Cadabra_(0)': 50x50.
+2025-07-21 11:26:55,912 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Chocolat Cadabra_(0)'.
+2025-07-21 11:26:55,920 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Chocolat Cadabra_(0)' (New size: 50x50).
+2025-07-21 11:26:55,920 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Chocolat Cadabra_(0)'.
+2025-07-21 11:26:55,920 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Chocolat Cadabra_(0)' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,921 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Fleeting Lullaby.flac
+2025-07-21 11:26:55,921 - root - DEBUG - Found FLAC cover data for track Ado - Fleeting Lullaby.flac
+2025-07-21 11:26:55,922 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Fleeting Lullaby' (item_type: file)
+2025-07-21 11:26:55,922 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,922 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Fleeting Lullaby' (Size: 1000x1000)
+2025-07-21 11:26:55,929 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Fleeting Lullaby'.
+2025-07-21 11:26:55,929 - root - DEBUG - ListItemWidget: Target size for 'Ado - Fleeting Lullaby': 50x50.
+2025-07-21 11:26:55,930 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Fleeting Lullaby'.
+2025-07-21 11:26:55,937 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Fleeting Lullaby' (New size: 50x50).
+2025-07-21 11:26:55,937 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Fleeting Lullaby'.
+2025-07-21 11:26:55,937 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Fleeting Lullaby' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,938 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Freedom.flac
+2025-07-21 11:26:55,938 - root - DEBUG - Found FLAC cover data for track Ado - Freedom.flac
+2025-07-21 11:26:55,939 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Freedom' (item_type: file)
+2025-07-21 11:26:55,939 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,939 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Freedom' (Size: 1000x1000)
+2025-07-21 11:26:55,946 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Freedom'.
+2025-07-21 11:26:55,946 - root - DEBUG - ListItemWidget: Target size for 'Ado - Freedom': 50x50.
+2025-07-21 11:26:55,947 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Freedom'.
+2025-07-21 11:26:55,954 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Freedom' (New size: 50x50).
+2025-07-21 11:26:55,954 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Freedom'.
+2025-07-21 11:26:55,954 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Freedom' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,955 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Gira Gira.flac
+2025-07-21 11:26:55,955 - root - DEBUG - Found FLAC cover data for track Ado - Gira Gira.flac
+2025-07-21 11:26:55,956 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Gira Gira' (item_type: file)
+2025-07-21 11:26:55,956 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,956 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Gira Gira' (Size: 1000x1000)
+2025-07-21 11:26:55,963 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Gira Gira'.
+2025-07-21 11:26:55,963 - root - DEBUG - ListItemWidget: Target size for 'Ado - Gira Gira': 50x50.
+2025-07-21 11:26:55,964 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Gira Gira'.
+2025-07-21 11:26:55,971 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Gira Gira' (New size: 50x50).
+2025-07-21 11:26:55,971 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Gira Gira'.
+2025-07-21 11:26:55,971 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Gira Gira' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,972 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - I m a Controversy_(0).flac
+2025-07-21 11:26:55,972 - root - DEBUG - Found FLAC cover data for track Ado - I m a Controversy_(0).flac
+2025-07-21 11:26:55,973 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - I m a Controversy_(0)' (item_type: file)
+2025-07-21 11:26:55,973 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,973 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - I m a Controversy_(0)' (Size: 1000x1000)
+2025-07-21 11:26:55,980 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - I m a Controversy_(0)'.
+2025-07-21 11:26:55,980 - root - DEBUG - ListItemWidget: Target size for 'Ado - I m a Controversy_(0)': 50x50.
+2025-07-21 11:26:55,980 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - I m a Controversy_(0)'.
+2025-07-21 11:26:55,988 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - I m a Controversy_(0)' (New size: 50x50).
+2025-07-21 11:26:55,988 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - I m a Controversy_(0)'.
+2025-07-21 11:26:55,988 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - I m a Controversy_(0)' using PIL and manual QImage conversion.
+2025-07-21 11:26:55,989 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - I m invincible (UTA from ONE PIECE FILM RED).flac
+2025-07-21 11:26:55,989 - root - DEBUG - Found FLAC cover data for track Ado - I m invincible (UTA from ONE PIECE FILM RED).flac
+2025-07-21 11:26:55,989 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)' (item_type: file)
+2025-07-21 11:26:55,990 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:55,990 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)' (Size: 1000x1000)
+2025-07-21 11:26:55,997 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:55,997 - root - DEBUG - ListItemWidget: Target size for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)': 50x50.
+2025-07-21 11:26:55,998 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:56,005 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)' (New size: 50x50).
+2025-07-21 11:26:56,005 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:56,005 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - I m invincible (UTA from ONE PIECE FILM RED)' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,006 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - KokoroToIuNaNoFukakai.flac
+2025-07-21 11:26:56,006 - root - DEBUG - Found FLAC cover data for track Ado - KokoroToIuNaNoFukakai.flac
+2025-07-21 11:26:56,007 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - KokoroToIuNaNoFukakai' (item_type: file)
+2025-07-21 11:26:56,007 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,007 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - KokoroToIuNaNoFukakai' (Size: 1000x1000)
+2025-07-21 11:26:56,015 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - KokoroToIuNaNoFukakai'.
+2025-07-21 11:26:56,015 - root - DEBUG - ListItemWidget: Target size for 'Ado - KokoroToIuNaNoFukakai': 50x50.
+2025-07-21 11:26:56,015 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - KokoroToIuNaNoFukakai'.
+2025-07-21 11:26:56,022 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - KokoroToIuNaNoFukakai' (New size: 50x50).
+2025-07-21 11:26:56,022 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - KokoroToIuNaNoFukakai'.
+2025-07-21 11:26:56,022 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - KokoroToIuNaNoFukakai' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,023 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Kura Kura_(0).flac
+2025-07-21 11:26:56,024 - root - DEBUG - Found FLAC cover data for track Ado - Kura Kura_(0).flac
+2025-07-21 11:26:56,024 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Kura Kura_(0)' (item_type: file)
+2025-07-21 11:26:56,024 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,024 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Kura Kura_(0)' (Size: 1000x1000)
+2025-07-21 11:26:56,032 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Kura Kura_(0)'.
+2025-07-21 11:26:56,032 - root - DEBUG - ListItemWidget: Target size for 'Ado - Kura Kura_(0)': 50x50.
+2025-07-21 11:26:56,032 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Kura Kura_(0)'.
+2025-07-21 11:26:56,039 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Kura Kura_(0)' (New size: 50x50).
+2025-07-21 11:26:56,039 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Kura Kura_(0)'.
+2025-07-21 11:26:56,040 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Kura Kura_(0)' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,040 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Lucky Bruto.flac
+2025-07-21 11:26:56,041 - root - DEBUG - Found FLAC cover data for track Ado - Lucky Bruto.flac
+2025-07-21 11:26:56,041 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Lucky Bruto' (item_type: file)
+2025-07-21 11:26:56,041 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,041 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Lucky Bruto' (Size: 1000x1000)
+2025-07-21 11:26:56,049 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Lucky Bruto'.
+2025-07-21 11:26:56,049 - root - DEBUG - ListItemWidget: Target size for 'Ado - Lucky Bruto': 50x50.
+2025-07-21 11:26:56,049 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Lucky Bruto'.
+2025-07-21 11:26:56,057 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Lucky Bruto' (New size: 50x50).
+2025-07-21 11:26:56,057 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Lucky Bruto'.
+2025-07-21 11:26:56,057 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Lucky Bruto' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,058 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Motherland.flac
+2025-07-21 11:26:56,058 - root - DEBUG - Found FLAC cover data for track Ado - Motherland.flac
+2025-07-21 11:26:56,058 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Motherland' (item_type: file)
+2025-07-21 11:26:56,058 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,058 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Motherland' (Size: 1000x1000)
+2025-07-21 11:26:56,066 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Motherland'.
+2025-07-21 11:26:56,066 - root - DEBUG - ListItemWidget: Target size for 'Ado - Motherland': 50x50.
+2025-07-21 11:26:56,066 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Motherland'.
+2025-07-21 11:26:56,074 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Motherland' (New size: 50x50).
+2025-07-21 11:26:56,074 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Motherland'.
+2025-07-21 11:26:56,074 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Motherland' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,075 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - New Genesis (UTA from ONE PIECE FILM RED).flac
+2025-07-21 11:26:56,075 - root - DEBUG - Found FLAC cover data for track Ado - New Genesis (UTA from ONE PIECE FILM RED).flac
+2025-07-21 11:26:56,075 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)' (item_type: file)
+2025-07-21 11:26:56,075 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,075 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)' (Size: 1000x1000)
+2025-07-21 11:26:56,083 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:56,083 - root - DEBUG - ListItemWidget: Target size for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)': 50x50.
+2025-07-21 11:26:56,083 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:56,091 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)' (New size: 50x50).
+2025-07-21 11:26:56,091 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)'.
+2025-07-21 11:26:56,091 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - New Genesis (UTA from ONE PIECE FILM RED)' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,092 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Odo.flac
+2025-07-21 11:26:56,092 - root - DEBUG - Found FLAC cover data for track Ado - Odo.flac
+2025-07-21 11:26:56,092 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Odo' (item_type: file)
+2025-07-21 11:26:56,092 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,092 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Odo' (Size: 1000x1000)
+2025-07-21 11:26:56,100 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Odo'.
+2025-07-21 11:26:56,100 - root - DEBUG - ListItemWidget: Target size for 'Ado - Odo': 50x50.
+2025-07-21 11:26:56,100 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Odo'.
+2025-07-21 11:26:56,108 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Odo' (New size: 50x50).
+2025-07-21 11:26:56,108 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Odo'.
+2025-07-21 11:26:56,108 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Odo' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,109 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Readymade.flac
+2025-07-21 11:26:56,109 - root - DEBUG - Found FLAC cover data for track Ado - Readymade.flac
+2025-07-21 11:26:56,110 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Readymade' (item_type: file)
+2025-07-21 11:26:56,110 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,110 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Readymade' (Size: 1000x1000)
+2025-07-21 11:26:56,118 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Readymade'.
+2025-07-21 11:26:56,118 - root - DEBUG - ListItemWidget: Target size for 'Ado - Readymade': 50x50.
+2025-07-21 11:26:56,118 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Readymade'.
+2025-07-21 11:26:56,125 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Readymade' (New size: 50x50).
+2025-07-21 11:26:56,125 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Readymade'.
+2025-07-21 11:26:56,126 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Readymade' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,126 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Rebellion_(0).flac
+2025-07-21 11:26:56,127 - root - DEBUG - Found FLAC cover data for track Ado - Rebellion_(0).flac
+2025-07-21 11:26:56,127 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Rebellion_(0)' (item_type: file)
+2025-07-21 11:26:56,127 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,127 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Rebellion_(0)' (Size: 1000x1000)
+2025-07-21 11:26:56,135 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Rebellion_(0)'.
+2025-07-21 11:26:56,135 - root - DEBUG - ListItemWidget: Target size for 'Ado - Rebellion_(0)': 50x50.
+2025-07-21 11:26:56,135 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Rebellion_(0)'.
+2025-07-21 11:26:56,143 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Rebellion_(0)' (New size: 50x50).
+2025-07-21 11:26:56,143 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Rebellion_(0)'.
+2025-07-21 11:26:56,143 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Rebellion_(0)' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,144 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Show (Jax Jones Remix)_(0).flac
+2025-07-21 11:26:56,144 - root - DEBUG - Found FLAC cover data for track Ado - Show (Jax Jones Remix)_(0).flac
+2025-07-21 11:26:56,144 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Show (Jax Jones Remix)_(0)' (item_type: file)
+2025-07-21 11:26:56,144 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,144 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Show (Jax Jones Remix)_(0)' (Size: 1000x1000)
+2025-07-21 11:26:56,152 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Show (Jax Jones Remix)_(0)'.
+2025-07-21 11:26:56,152 - root - DEBUG - ListItemWidget: Target size for 'Ado - Show (Jax Jones Remix)_(0)': 50x50.
+2025-07-21 11:26:56,153 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Show (Jax Jones Remix)_(0)'.
+2025-07-21 11:26:56,160 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Show (Jax Jones Remix)_(0)' (New size: 50x50).
+2025-07-21 11:26:56,160 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Show (Jax Jones Remix)_(0)'.
+2025-07-21 11:26:56,160 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Show (Jax Jones Remix)_(0)' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,161 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Show_(1).flac
+2025-07-21 11:26:56,161 - root - DEBUG - Found FLAC cover data for track Ado - Show_(1).flac
+2025-07-21 11:26:56,162 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Show_(1)' (item_type: file)
+2025-07-21 11:26:56,162 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,162 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Show_(1)' (Size: 1000x1000)
+2025-07-21 11:26:56,169 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Show_(1)'.
+2025-07-21 11:26:56,170 - root - DEBUG - ListItemWidget: Target size for 'Ado - Show_(1)': 50x50.
+2025-07-21 11:26:56,170 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Show_(1)'.
+2025-07-21 11:26:56,177 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Show_(1)' (New size: 50x50).
+2025-07-21 11:26:56,177 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Show_(1)'.
+2025-07-21 11:26:56,177 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Show_(1)' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,178 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Tot Musica.flac
+2025-07-21 11:26:56,179 - root - DEBUG - Found FLAC cover data for track Ado - Tot Musica.flac
+2025-07-21 11:26:56,179 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Tot Musica' (item_type: file)
+2025-07-21 11:26:56,179 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,179 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Tot Musica' (Size: 1000x1000)
+2025-07-21 11:26:56,188 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Tot Musica'.
+2025-07-21 11:26:56,188 - root - DEBUG - ListItemWidget: Target size for 'Ado - Tot Musica': 50x50.
+2025-07-21 11:26:56,188 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Tot Musica'.
+2025-07-21 11:26:56,195 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Tot Musica' (New size: 50x50).
+2025-07-21 11:26:56,196 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Tot Musica'.
+2025-07-21 11:26:56,196 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Tot Musica' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,196 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Usseewa.flac
+2025-07-21 11:26:56,197 - root - DEBUG - Found FLAC cover data for track Ado - Usseewa.flac
+2025-07-21 11:26:56,197 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Usseewa' (item_type: file)
+2025-07-21 11:26:56,197 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,197 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Usseewa' (Size: 1000x1000)
+2025-07-21 11:26:56,205 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Usseewa'.
+2025-07-21 11:26:56,205 - root - DEBUG - ListItemWidget: Target size for 'Ado - Usseewa': 50x50.
+2025-07-21 11:26:56,206 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Usseewa'.
+2025-07-21 11:26:56,213 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Usseewa' (New size: 50x50).
+2025-07-21 11:26:56,213 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Usseewa'.
+2025-07-21 11:26:56,214 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Usseewa' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,215 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Where the Wind Blows.flac
+2025-07-21 11:26:56,215 - root - DEBUG - Found FLAC cover data for track Ado - Where the Wind Blows.flac
+2025-07-21 11:26:56,216 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Where the Wind Blows' (item_type: file)
+2025-07-21 11:26:56,216 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,216 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Where the Wind Blows' (Size: 1000x1000)
+2025-07-21 11:26:56,224 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Where the Wind Blows'.
+2025-07-21 11:26:56,225 - root - DEBUG - ListItemWidget: Target size for 'Ado - Where the Wind Blows': 50x50.
+2025-07-21 11:26:56,225 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Where the Wind Blows'.
+2025-07-21 11:26:56,232 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Where the Wind Blows' (New size: 50x50).
+2025-07-21 11:26:56,232 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Where the Wind Blows'.
+2025-07-21 11:26:56,232 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Where the Wind Blows' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,233 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - Yoru No Pierrot.flac
+2025-07-21 11:26:56,234 - root - DEBUG - Found FLAC cover data for track Ado - Yoru No Pierrot.flac
+2025-07-21 11:26:56,234 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - Yoru No Pierrot' (item_type: file)
+2025-07-21 11:26:56,234 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,234 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - Yoru No Pierrot' (Size: 1000x1000)
+2025-07-21 11:26:56,242 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - Yoru No Pierrot'.
+2025-07-21 11:26:56,242 - root - DEBUG - ListItemWidget: Target size for 'Ado - Yoru No Pierrot': 50x50.
+2025-07-21 11:26:56,242 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - Yoru No Pierrot'.
+2025-07-21 11:26:56,250 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - Yoru No Pierrot' (New size: 50x50).
+2025-07-21 11:26:56,250 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - Yoru No Pierrot'.
+2025-07-21 11:26:56,250 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - Yoru No Pierrot' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,251 - root - DEBUG - Checking file for track cover: E:/Music'a\Ado\Ado Ready For My Show Playlist\Ado - unravel.flac
+2025-07-21 11:26:56,252 - root - DEBUG - Found FLAC cover data for track Ado - unravel.flac
+2025-07-21 11:26:56,252 - root - DEBUG - ListItemWidget: Attempting to load image for 'Ado - unravel' (item_type: file)
+2025-07-21 11:26:56,252 - root - DEBUG - ListItemWidget: Image data is bytes.
+2025-07-21 11:26:56,252 - root - DEBUG - ListItemWidget: Successfully loaded PIL Image from raw data for 'Ado - unravel' (Size: 1000x1000)
+2025-07-21 11:26:56,260 - root - DEBUG - ListItemWidget: Converted PIL Image to RGBA for 'Ado - unravel'.
+2025-07-21 11:26:56,260 - root - DEBUG - ListItemWidget: Target size for 'Ado - unravel': 50x50.
+2025-07-21 11:26:56,261 - root - DEBUG - ListItemWidget: Created circular mask for 'Ado - unravel'.
+2025-07-21 11:26:56,268 - root - DEBUG - ListItemWidget: Resized PIL Image thumbnail for 'Ado - unravel' (New size: 50x50).
+2025-07-21 11:26:56,268 - root - DEBUG - ListItemWidget: Pasted PIL Image with mask for 'Ado - unravel'.
+2025-07-21 11:26:56,268 - root - DEBUG - ListItemWidget: Successfully set pixmap for 'Ado - unravel' using PIL and manual QImage conversion.
+2025-07-21 11:26:56,456 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.png
+2025-07-21 11:26:56,457 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpg
+2025-07-21 11:26:56,457 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpeg
+2025-07-21 11:26:56,457 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.gif
+2025-07-21 11:26:56,457 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.bmp
+2025-07-21 11:26:56,457 - root - DEBUG - No artist image found for folder: Ado Ready For My Show Playlist in E:/Music'a\Ado\Ado Ready For My Show Playlist
+2025-07-21 11:26:58,241 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.png
+2025-07-21 11:26:58,241 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpg
+2025-07-21 11:26:58,241 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpeg
+2025-07-21 11:26:58,241 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.gif
+2025-07-21 11:26:58,241 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.bmp
+2025-07-21 11:26:58,241 - root - DEBUG - No artist image found for folder: Ado Ready For My Show Playlist in E:/Music'a\Ado\Ado Ready For My Show Playlist
+2025-07-21 11:26:59,785 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.png
+2025-07-21 11:26:59,785 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpg
+2025-07-21 11:26:59,785 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpeg
+2025-07-21 11:26:59,786 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.gif
+2025-07-21 11:26:59,786 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.bmp
+2025-07-21 11:26:59,786 - root - DEBUG - No artist image found for folder: Ado Ready For My Show Playlist in E:/Music'a\Ado\Ado Ready For My Show Playlist
+2025-07-21 11:27:00,069 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.png
+2025-07-21 11:27:00,069 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpg
+2025-07-21 11:27:00,069 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.jpeg
+2025-07-21 11:27:00,070 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.gif
+2025-07-21 11:27:00,070 - root - DEBUG - Checking for artist image at: E:/Music'a\Ado\Ado Ready For My Show Playlist\ado ready for my show playlist.bmp
+2025-07-21 11:27:00,070 - root - DEBUG - No artist image found for folder: Ado Ready For My Show Playlist in E:/Music'a\Ado\Ado Ready For My Show Playlist
+2025-07-21 11:27:01,089 - root - INFO - Режим перемешивания: Включен
+2025-07-21 11:27:02,133 - root - INFO - Режим перемешивания: Выключен
