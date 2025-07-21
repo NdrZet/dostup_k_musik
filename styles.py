@@ -1,64 +1,79 @@
-# styles.py
-
 app_stylesheet = """
 QWidget {
-    background-color: #171717; /* Общий фон приложения - серый */
-    color: white;
+    background-color: #2c2c2c; /* Темно-серый фон для всего приложения */
+    color: white; /* Белый цвет текста по умолчанию */
+    font-family: Arial, sans-serif;
 }
 
 QLabel {
-    color: white;
+    color: white; /* Цвет текста для меток */
 }
 
 QPushButton {
-    background-color: #333333;
-    color: white;
+    background-color: #333333; /* Темно-серый фон кнопок */
+    color: white; /* Белый текст кнопок */
     border: none;
-    padding: 12px 12px; /* Увеличен padding для круглых кнопок */
-    border-radius: 40%; /* Сделано круглым */
+    padding: 10px 20px;
+    border-radius: 8px; /* Скругленные углы кнопок */
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Плавный переход для фона */
 }
 
 QPushButton:hover {
-    background-color: #555555;
+    background-color: #555555; /* Более светлый фон при наведении */
 }
 
 QPushButton:pressed {
-    background-color: #0056b3;
+    background-color: #1a1a1a; /* Еще более темный фон при нажатии */
 }
 
 QPushButton:disabled {
-    background-color: #1a1a1a;
-    color: #888888;
-}
-
-QListWidget {
-    background-color: #222222;
-    color: white;
-    border: 1px solid #222222;
-    border-radius: 5px;
-}
-
-QListWidget::item:selected {
-    background-color: #007bff;
-    color: white;
-}
-
-QListWidget::item:hover {
-    background-color: #444444;
+    background-color: #444444; /* Более светлый фон для неактивных кнопок */
+    color: #aaaaaa; /* Более тусклый текст для неактивных кнопок */
 }
 
 QSlider::groove:horizontal {
-    border: 1px solid #bbb;
-    background: white;
+    border: 1px solid #444444;
     height: 8px;
+    background: #555555;
+    margin: 2px 0;
     border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
-    background: #007bff;
+    background: #007bff; /* Синий цвет ползунка */
     border: 1px solid #007bff;
     width: 18px;
-    margin: -5px 0;
-    border-radius: 50%; /* Изменен на 50% для круглого ползунка */
+    margin: -5px 0; /* Увеличиваем размер ползунка */
+    border-radius: 9px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #007bff; /* Цвет заполненной части ползунка */
+    border-radius: 4px;
+}
+
+QListWidget {
+    background-color: #1e1e1e; /* Очень темный фон для списка */
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+QListWidget::item {
+    background-color: none; /* Фон элемента списка */
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+QListWidget::item:selected {
+    background-color: #0056b3; /* Фон выбранного элемента */
+}
+
+/* Стиль для QLabel внутри ListItemWidget */
+ListItemWidget QLabel {
+    background-color: transparent; /* Делаем фон текста прозрачным */
+    color: white; /* Убедимся, что цвет текста белый */
 }
 """
