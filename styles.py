@@ -2,7 +2,7 @@
 
 app_stylesheet = """
 QWidget {
-    background-color: #444444; /* Общий фон приложения - серый */
+    background-color: #171717; /* Общий фон приложения - серый */
     color: white;
 }
 
@@ -15,7 +15,7 @@ QPushButton {
     color: white;
     border: none;
     padding: 12px 12px; /* Увеличен padding для круглых кнопок */
-    border-radius: 50%; /* Сделано круглым */
+    border-radius: 40%; /* Сделано круглым */
 }
 
 QPushButton:hover {
@@ -34,7 +34,7 @@ QPushButton:disabled {
 QListWidget {
     background-color: #222222;
     color: white;
-    border: 1px solid #555555;
+    border: 1px solid #222222;
     border-radius: 5px;
 }
 
