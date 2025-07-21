@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
-                             QHBoxLayout, QFileDialog, QLabel, QSlider, QSizePolicy, QListWidget, QListWidgetItem)
+                             QHBoxLayout, QFileDialog, QLabel, QSlider, QSizePolicy, QListWidget, QListWidgetItem,
+                             QScrollArea)
 from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QEvent, QSize, QSettings
 from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon, QPainter, QBrush, QPainterPath
 import vlc
@@ -43,7 +44,8 @@ class SquareLabel(QLabel):
 class ListItemWidget(QWidget):
     def __init__(self, text, image_data=None, font=None, parent=None, item_type="unknown"):
         super().__init__(parent)
-        self.setFixedHeight(60)
+        # Возвращена фиксированная высота элемента списка для стабильности
+        self.setFixedHeight(75)
 
         layout = QHBoxLayout()
         layout.setContentsMargins(5, 5, 5, 5)
@@ -255,137 +257,180 @@ class MusicPlayer(QWidget):
         self.showMaximized()
 
     def init_ui(self):
-        root_layout = QHBoxLayout()
+        root_layout = QVBoxLayout(self)  # Изменен на QVBoxLayout для вертикального разделения
 
+        # Верхняя часть (библиотека и основное содержимое)
+        top_section_layout = QHBoxLayout()
+
+        # Левая панель (Библиотека)
         self.left_panel_widget = QWidget()
         self.left_panel_widget.setObjectName("leftPanel")
         left_panel_layout = QVBoxLayout(self.left_panel_widget)
-        left_panel_layout.setContentsMargins(15, 15, 15, 15)
+        left_panel_layout.setContentsMargins(15, 15, 15,
+                                             15)  # Уменьшен нижний отступ, чтобы дать место для нижней панели
 
-        self.library_label = QLabel("Моя Музыкальная Библиотека")
-        left_panel_layout.addWidget(self.library_label)
+        # Заголовок библиотеки
+        library_header_layout = QHBoxLayout()
+        self.my_media_button = QPushButton("Моя медиатека")
+        self.my_media_button.clicked.connect(self._show_my_media)  # Подключаем к новой функции
+        self.my_media_button.setFocusPolicy(Qt.NoFocus)
 
-        self.add_root_folder_button = QPushButton("Добавить корневую папку")
-        self.add_root_folder_button.clicked.connect(self.open_library_folder)
-        self.add_root_folder_button.setFocusPolicy(Qt.NoFocus)
-        left_panel_layout.addWidget(self.add_root_folder_button)
+        self.create_button = QPushButton("Создать")
+        self.create_button.clicked.connect(self._create_new_playlist)  # Подключаем к новой функции
+        self.create_button.setFocusPolicy(Qt.NoFocus)
 
+        library_header_layout.addWidget(self.my_media_button)
+        library_header_layout.addWidget(self.create_button)
+        library_header_layout.addStretch(1)  # Растягивающийся пробел
+        left_panel_layout.addLayout(library_header_layout)
+
+        # Элементы управления библиотекой (Поиск, Недавние, Исполнители, Альбомы)
+        library_controls_layout = QHBoxLayout()
+        self.search_library_button = QPushButton("Поиск")
+        self.recent_button = QPushButton("Недавние")
+        self.artists_button = QPushButton("Исполнители")
+        self.albums_button = QPushButton("Альбомы")
+        library_controls_layout.addWidget(self.search_library_button)
+        library_controls_layout.addWidget(self.recent_button)
+        library_controls_layout.addWidget(self.artists_button)
+        library_controls_layout.addWidget(self.albums_button)
+        library_controls_layout.addStretch(1)
+        left_panel_layout.addLayout(library_controls_layout)
+
+        # Кнопка "Назад"
         self.back_button = QPushButton("Назад")
         self.back_button.clicked.connect(self._navigate_back)
         self.back_button.setEnabled(False)
         self.back_button.setFocusPolicy(Qt.NoFocus)
         left_panel_layout.addWidget(self.back_button)
 
+        # Список библиотеки в QScrollArea
+        self.library_scroll_area = QScrollArea()
+        self.library_scroll_area.setWidgetResizable(True)
+        self.library_scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.library_scroll_area.setStyleSheet("border: none; background-color: #121212;")  # Убираем рамку
+
         self.library_list_widget = QListWidget()
         self.library_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.library_list_widget.itemClicked.connect(self.load_track_from_library)
-        left_panel_layout.addWidget(self.library_list_widget)
+        self.library_scroll_area.setWidget(self.library_list_widget)
+        left_panel_layout.addWidget(self.library_scroll_area)
 
-        root_layout.addWidget(self.left_panel_widget, 1)
+        # Нижние элементы управления библиотекой (Скрыть прямо)
+        library_bottom_controls_layout = QHBoxLayout()
+        self.hide_direct_button = QPushButton("Скрыть прямо")
+        library_bottom_controls_layout.addStretch(1)
+        library_bottom_controls_layout.addWidget(self.hide_direct_button)
+        left_panel_layout.addLayout(library_bottom_controls_layout)
 
+        top_section_layout.addWidget(self.left_panel_widget, 1)
+
+        # Правая панель (Основное содержимое - теперь пустая)
         right_panel_layout = QVBoxLayout()
+        right_panel_layout.addStretch(1)  # Растягивающийся пробел для заполнения пространства
+        top_section_layout.addLayout(right_panel_layout, 3)  # Добавляем правую панель в верхнюю секцию
 
-        info_layout = QHBoxLayout()
-        self.cover_label = SquareLabel()
-        self.cover_label.setMinimumSize(50, 50)
-        info_layout.addWidget(self.cover_label)
+        root_layout.addLayout(top_section_layout, 4)  # Верхняя секция занимает большую часть пространства
 
-        self.artist_image_label = SquareLabel()
-        self.artist_image_label.setText("Нет фото артиста")
-        info_layout.addWidget(self.artist_image_label)
+        # Нижняя панель (Панель управления треками - как в Spotify)
+        self.bottom_player_panel = QWidget()
+        self.bottom_player_panel.setObjectName("bottomPlayerPanel")
+        bottom_player_layout = QHBoxLayout(self.bottom_player_panel)
+        bottom_player_layout.setContentsMargins(15, 10, 15, 10)  # Отступы для нижней панели
 
-        track_info_layout = QVBoxLayout()
-        self.title_label = QLabel("Название: -")
-        self.artist_label = QLabel("Исполнитель: -")
-        self.album_label = QLabel("Альбом: -")
-        self.title_label.setFont(QFont("Arial", 18, QFont.Bold))
-        self.artist_label.setFont(QFont("Arial", 14))
-        self.album_label.setFont(QFont("Arial", 14))
-        track_info_layout.addWidget(self.title_label)
-        track_info_layout.addWidget(self.artist_label)
-        track_info_layout.addWidget(self.album_label)
-        track_info_layout.addStretch(1)
-        info_layout.addLayout(track_info_layout)
-        right_panel_layout.addLayout(info_layout, 3)
-
-        right_panel_layout.addStretch(1)
-
-        self.control_panel_container = QWidget()
-        self.control_panel_container.setStyleSheet("background-color: black;")
-        control_panel_layout = QVBoxLayout(self.control_panel_container)
-        control_panel_layout.setContentsMargins(0, 0, 0, 0)
-
-        playback_controls_row_layout = QHBoxLayout()
-        playback_controls_row_layout.addStretch(1)
-
+        # Инициализация кнопок управления воспроизведением здесь
         self.shuffle_button = QPushButton()
         self.shuffle_button.clicked.connect(self.toggle_shuffle)
         self.shuffle_button.setFocusPolicy(Qt.NoFocus)
-        playback_controls_row_layout.addWidget(self.shuffle_button)
 
         self.prev_track_button = QPushButton()
         self.prev_track_button.clicked.connect(self.play_previous_track)
         self.prev_track_button.setEnabled(False)
         self.prev_track_button.setFocusPolicy(Qt.NoFocus)
-        playback_controls_row_layout.addWidget(self.prev_track_button)
 
         self.play_pause_button = QPushButton()
         self.play_pause_button.clicked.connect(self.toggle_play_pause)
         self.play_pause_button.setEnabled(False)
         self.play_pause_button.setFocusPolicy(Qt.NoFocus)
-        playback_controls_row_layout.addWidget(self.play_pause_button)
 
         self.next_track_button = QPushButton()
         self.next_track_button.clicked.connect(self.play_next_track)
         self.next_track_button.setEnabled(False)
         self.next_track_button.setFocusPolicy(Qt.NoFocus)
-        playback_controls_row_layout.addWidget(self.next_track_button)
 
         self.repeat_button = QPushButton()
         self.repeat_button.clicked.connect(self.toggle_repeat)
         self.repeat_button.setFocusPolicy(Qt.NoFocus)
-        playback_controls_row_layout.addWidget(self.repeat_button)
 
-        playback_controls_row_layout.addStretch(1)
-        control_panel_layout.addLayout(playback_controls_row_layout)
-
+        # Инициализация меток времени и ползунка позиции здесь
+        self.current_time_label = QLabel("00:00")
+        self.total_time_label = QLabel("00:00")
         self.position_slider = QSlider(Qt.Horizontal)
         self.position_slider.setRange(0, 1000)
         self.position_slider.sliderMoved.connect(self.set_position)
         self.position_slider.setEnabled(False)
-        control_panel_layout.addWidget(self.position_slider)
 
-        time_layout = QHBoxLayout()
-        self.current_time_label = QLabel("00:00")
-        self.total_time_label = QLabel("00:00")
-        time_layout.addWidget(self.current_time_label)
-        time_layout.addStretch(1)
-        time_layout.addWidget(self.total_time_label)
-        control_panel_layout.addLayout(time_layout)
+        # --- Левая секция нижней панели: обложка, название, исполнитель ---
+        left_info_layout = QHBoxLayout()
+        self.current_track_cover = SquareLabel()
+        self.current_track_cover.setFixedSize(60, 60)  # Фиксированный размер для обложки внизу
+        left_info_layout.addWidget(self.current_track_cover)
 
-        bottom_right_volume_container = QHBoxLayout()
-        bottom_right_volume_container.addStretch(1)
+        # QVBoxLayout для названия и исполнителя
+        track_text_layout = QVBoxLayout()
+        track_text_layout.setContentsMargins(0, 0, 0, 0)  # Убираем отступы
+        track_text_layout.setSpacing(0)  # Убираем промежутки
+        self.current_track_title = QLabel("Название трека")
+        self.current_track_artist = QLabel("Исполнитель")
+        track_text_layout.addWidget(self.current_track_title)
+        track_text_layout.addWidget(self.current_track_artist)
+        track_text_layout.addStretch(1)  # Прижимаем к верху
+        left_info_layout.addLayout(track_text_layout)
+        left_info_layout.addStretch(1)  # Растягивающийся пробел
+        bottom_player_layout.addLayout(left_info_layout, 2)  # Увеличен коэффициент растяжения
 
-        volume_control_layout = QHBoxLayout()
+        # --- Центральная секция нижней панели: кнопки, ползунок прогресса ---
+        center_controls_layout = QVBoxLayout()  # Этот макет будет содержать все элементы центральной части
+
+        # Ряд 1: Кнопки управления воспроизведением
+        playback_buttons_layout = QHBoxLayout()
+        playback_buttons_layout.addStretch(1)
+        playback_buttons_layout.addWidget(self.shuffle_button)
+        playback_buttons_layout.addWidget(self.prev_track_button)
+        playback_buttons_layout.addWidget(self.play_pause_button)
+        playback_buttons_layout.addWidget(self.next_track_button)
+        playback_buttons_layout.addWidget(self.repeat_button)
+        playback_buttons_layout.addStretch(1)
+        center_controls_layout.addLayout(playback_buttons_layout)
+
+        # Ряд 2: Время и ползунок прогресса
+        time_and_slider_layout = QHBoxLayout()
+        time_and_slider_layout.addWidget(self.current_time_label)
+        time_and_slider_layout.addWidget(self.position_slider)
+        time_and_slider_layout.addWidget(self.total_time_label)
+        center_controls_layout.addLayout(time_and_slider_layout)
+        center_controls_layout.addStretch(
+            1)  # Добавляем растягивающийся пробел, чтобы прижать содержимое к верху, если необходимо
+
+        bottom_player_layout.addLayout(center_controls_layout, 5)  # Увеличен коэффициент растяжения
+
+        # --- Правая секция нижней панели: громкость ---
+        right_volume_layout = QHBoxLayout()  # Используем QHBoxLayout для горизонтального расположения
+        right_volume_layout.addStretch(1)  # Прижимаем к правому краю
         self.volume_label = QLabel("Громкость: 50%")
-        volume_control_layout.addWidget(self.volume_label)
-
+        right_volume_layout.addWidget(self.volume_label)
         self.volume_slider = QSlider(Qt.Horizontal)
         self.volume_slider.setRange(0, 100)
         self.volume_slider.setValue(50)
         self.volume_slider.sliderMoved.connect(self.set_volume)
         self.volume_slider.setFocusPolicy(Qt.NoFocus)
         self.volume_slider.installEventFilter(self)
-        volume_control_layout.addWidget(self.volume_slider)
+        right_volume_layout.addWidget(self.volume_slider)
+        bottom_player_layout.addLayout(right_volume_layout, 2)  # Увеличен коэффициент растяжения
 
-        bottom_right_volume_container.addLayout(volume_control_layout)
-        control_panel_layout.addLayout(bottom_right_volume_container)
+        root_layout.addWidget(self.bottom_player_panel, 1)  # Нижняя панель занимает меньшую часть пространства
 
-        right_panel_layout.addWidget(self.control_panel_container)
-
-        root_layout.addLayout(right_panel_layout, 3)
-
-        self.setLayout(root_layout)
+        self.setLayout(root_layout)  # Устанавливаем корневой макет для всего окна
         self._update_font_sizes()
         self.shuffle_button.setIcon(QIcon(self.shuffle_icon_path))
         self.prev_track_button.setIcon(QIcon(self.prev_icon_path))
@@ -397,8 +442,6 @@ class MusicPlayer(QWidget):
         self._update_play_pause_button_style()
         self._update_button_style(self.next_track_button, False)
         self._update_button_style(self.repeat_button, self.is_repeating)
-
-        self._update_artist_image_display()
 
     def setup_timer(self):
         self.timer = QTimer(self)
@@ -438,16 +481,6 @@ class MusicPlayer(QWidget):
             self.media_player.stop()
 
         self.current_file = file_path
-
-        self.title_label.setText("Название: -")
-        self.artist_label.setText("Исполнитель: -")
-        self.album_label.setText("Альбом: -")
-        self.cover_label.setText("Нет обложки")
-        self.cover_label.setPixmap(QPixmap())
-        self.original_cover_pixmap = None
-        self.artist_image_label.setText("Нет фото артиста")
-        self.artist_image_label.setPixmap(QPixmap())
-        self.artist_pixmap = None
 
         media = vlc.Media(self.current_file)
         self.media_player.set_media(media)
@@ -503,9 +536,9 @@ class MusicPlayer(QWidget):
                 album = audio.get('TALB', audio.get('album', ['-']))[0] if audio.get('TALB') or audio.get(
                     'album') else '-'
 
-                self.title_label.setText(f"Название: {title}")
-                self.artist_label.setText(f"Исполнитель: {artist}")
-                self.album_label.setText(f"Альбом: {album}")
+                # Обновление информации в нижней панели
+                self.current_track_title.setText(title)
+                self.current_track_artist.setText(artist)
 
                 pixmap = QPixmap()
                 if file_path.lower().endswith('.mp3'):
@@ -523,7 +556,7 @@ class MusicPlayer(QWidget):
                                 self.original_cover_pixmap = pixmap
                                 break
 
-                self._update_cover_display()
+                self._update_current_track_cover_display()  # Обновление обложки в нижней панели
 
                 dir_name = os.path.dirname(file_path)
                 artist_folder_name = os.path.basename(dir_name)
@@ -547,72 +580,64 @@ class MusicPlayer(QWidget):
                     self.artist_pixmap = None
                     logging.debug(f"No artist image found for folder: {artist_folder_name} in {dir_name}")
 
-                self._update_artist_image_display()
 
         except ID3NoHeaderError:
             logging.info(f"Нет ID3 тегов для {file_path}. Возможно, это не MP3 или теги отсутствуют.")
-            self.title_label.setText("Название: (Нет тегов)")
-            self.artist_label.setText("Исполнитель: (Нет тегов)")
-            self.album_label.setText("Альбом: (Нет тегов)")
+            self.current_track_title.setText("Название трека")
+            self.current_track_artist.setText("Исполнитель")
             self.original_cover_pixmap = None
             self.artist_pixmap = None
-            self._update_cover_display()
-            self._update_artist_image_display()
+            self._update_current_track_cover_display()
         except Exception as e:
             logging.error(f"Ошибка чтения метаданных для {file_path}: {e}")
-            self.title_label.setText("Название: (Ошибка чтения)")
-            self.artist_label.setText("Исполнитель: (Ошибка чтения)")
-            self.album_label.setText("Альбом: (Ошибка чтения)")
+            self.current_track_title.setText("Название трека")
+            self.current_track_artist.setText("Исполнитель")
             self.original_cover_pixmap = None
             self.artist_pixmap = None
-            self._update_cover_display()
-            self._update_artist_image_display()
+            self._update_current_track_cover_display()
 
     def _update_cover_display(self):
+        # Этот метод теперь не нужен, так как cover_label удален из правой панели
+        pass
+
+    def _update_current_track_cover_display(self):
+        """Обновляет отображение обложки текущего трека в нижней панели."""
         if self.original_cover_pixmap:
-            scaled_pixmap = self.original_cover_pixmap.scaled(self.cover_label.size(),
+            scaled_pixmap = self.original_cover_pixmap.scaled(self.current_track_cover.size(),
                                                               Qt.KeepAspectRatio,
                                                               Qt.SmoothTransformation)
-            self.cover_label.setPixmap(scaled_pixmap)
-            self.cover_label.setText("")
+            self.current_track_cover.setPixmap(scaled_pixmap)
+            self.current_track_cover.setText("")
         else:
-            self.cover_label.setText("Нет обложки")
-            self.cover_label.setPixmap(QPixmap())
+            self.current_track_cover.setText("Нет обложки")
+            self.current_track_cover.setPixmap(QPixmap())
 
     def _update_artist_image_display(self):
-        """Обновляет отображение фотографии артиста."""
-        fixed_side = max(50, int(min(self.width(), self.height()) * 0.1))
-        self.artist_image_label.setFixedSize(fixed_side, fixed_side)
-
-        if self.artist_pixmap:
-            scaled_pixmap = self.artist_pixmap.scaled(self.artist_image_label.size(),
-                                                      Qt.KeepAspectRatio,
-                                                      Qt.SmoothTransformation)
-            self.artist_image_label.setPixmap(scaled_pixmap)
-            self.artist_image_label.setText("")
-        else:
-            self.artist_image_label.setText("Нет фото артиста")
-            self.artist_image_label.setPixmap(QPixmap())
+        # Этот метод теперь не нужен, так как artist_image_label удален из правой панели
+        pass
 
     def _update_font_sizes(self):
         window_side = min(self.width(), self.height())
         base_font_size = max(8, int(window_side * 0.01))
 
-        title_font_size = base_font_size + 2
-        artist_album_font_size = base_font_size
-
-        self.title_label.setFont(QFont("Arial", title_font_size, QFont.Bold))
-        self.artist_label.setFont(QFont("Arial", artist_album_font_size))
-        self.album_label.setFont(QFont("Arial", artist_album_font_size))
+        # Шрифты для нижней панели
+        self.current_track_title.setFont(QFont("Arial", base_font_size, QFont.Bold))
+        self.current_track_artist.setFont(QFont("Arial", base_font_size - 2))
 
         button_font_size = max(8, int(window_side * 0.007))
         font = QFont("Arial", button_font_size)
-        self.add_root_folder_button.setFont(font)
         self.back_button.setFont(font)
+        self.my_media_button.setFont(font)
+        self.create_button.setFont(font)
+        self.search_library_button.setFont(font)
+        self.recent_button.setFont(font)
+        self.artists_button.setFont(font)
+        self.albums_button.setFont(font)
+        self.hide_direct_button.setFont(font)
 
-        icon_size = max(24, int(window_side * 0.03))
-
-        button_fixed_size = max(50, int(window_side * 0.06))
+        # Динамический размер иконок и кнопок
+        icon_size = max(32, int(window_side * 0.025))
+        button_fixed_size = max(60, int(window_side * 0.05))
 
         for button in [self.play_pause_button, self.prev_track_button, self.next_track_button,
                        self.shuffle_button, self.repeat_button]:
@@ -624,7 +649,6 @@ class MusicPlayer(QWidget):
         self.current_time_label.setFont(time_font)
         self.total_time_label.setFont(time_font)
 
-        self.library_label.setFont(QFont("Arial", base_font_size, QFont.Bold))
         self.volume_label.setFont(time_font)
 
         self._update_button_style(self.shuffle_button, self.is_shuffling)
@@ -633,16 +657,14 @@ class MusicPlayer(QWidget):
         self._update_button_style(self.next_track_button, False)
         self._update_button_style(self.repeat_button, self.is_repeating)
 
-        self._update_artist_image_display()
-
     def resizeEvent(self, event):
         super().resizeEvent(event)
-        QTimer.singleShot(0, self._update_cover_display)
+        QTimer.singleShot(0, self._update_current_track_cover_display)  # Обновление обложки в нижней панели
         QTimer.singleShot(0, self._update_font_sizes)
 
     def changeEvent(self, event):
         if event.type() == QEvent.WindowStateChange:
-            QTimer.singleShot(0, self._update_cover_display)
+            QTimer.singleShot(0, self._update_current_track_cover_display)  # Обновление обложки в нижней панели
             QTimer.singleShot(0, self._update_font_sizes)
         super().changeEvent(event)
 
@@ -827,7 +849,8 @@ class MusicPlayer(QWidget):
             current_level_full_path = self.root_library_folder
             logging.info("Недействительный путь к библиотеке, сброс до корня.")
 
-        list_item_font_size = max(8, int(min(self.width(), self.height()) * 0.007))  # Увеличен множитель
+        # Динамический размер шрифта элементов списка
+        list_item_font_size = max(12, int(min(self.width(), self.height()) * 0.01))
         list_item_font = QFont("Arial", list_item_font_size)
 
         folders = sorted([k for k, v in current_node.items() if isinstance(v, dict)])
@@ -1040,6 +1063,26 @@ class MusicPlayer(QWidget):
             self.open_file(full_path)
         else:
             logging.error(f"Ошибка: Не удалось найти предыдущий трек: {prev_file_name}")
+
+    # Новые методы-заглушки для кнопок "Моя медиатека" и "Создать"
+    def _show_my_media(self):
+        """
+        Заглушка для отображения "Моей медиатеки".
+        Здесь можно реализовать логику для переключения вида или отображения
+        основного содержимого библиотеки.
+        Пока что просто открывает диалог выбора папки.
+        """
+        logging.info("Нажата кнопка 'Моя медиатека'.")
+        self.open_library_folder()  # Можно переиспользовать для выбора папки
+
+    def _create_new_playlist(self):
+        """
+        Заглушка для создания нового плейлиста.
+        Здесь можно реализовать логику для открытия диалога создания плейлиста
+        или переключения на соответствующий интерфейс.
+        """
+        logging.info("Нажата кнопка 'Создать'.")
+        # Добавьте здесь логику создания нового плейлиста
 
 
 if __name__ == '__main__':

@@ -71,12 +71,12 @@ QListWidget {
 QListWidget::item {
     background-color: none; /* Фон элемента списка */
     border-radius: 5px;
-    margin-bottom: -15px;
+    margin-bottom: 0px;
     padding: 5px;
 }
 
 QListWidget::item:selected {
-    background-color: #0066cc; /* Фон выбранного элемента */
+    background-color: #121212; /* Фон выбранного элемента */
     border: none; /* Убираем обводку */
     border-radius: 5px; /* Сохраняем скругление углов */
 }
