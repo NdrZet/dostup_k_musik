@@ -1,6 +1,6 @@
 app_stylesheet = """
 QWidget {
-    background-color: #2c2c2c; /* Темно-серый фон для всего приложения */
+    background-color: #121212; /* Темно-серый фон для всего приложения */
     color: white; /* Белый цвет текста по умолчанию */
     font-family: Arial, sans-serif;
 }
@@ -10,7 +10,7 @@ QLabel {
 }
 
 QPushButton {
-    background-color: #333333; /* Темно-серый фон кнопок */
+    background-color: #121212; /* Темно-серый фон кнопок */
     color: white; /* Белый текст кнопок */
     border: none;
     padding: 10px 20px;
@@ -20,7 +20,7 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #555555; /* Более светлый фон при наведении */
+    background-color: #333333; /* Более светлый фон при наведении */
 }
 
 QPushButton:pressed {
@@ -28,7 +28,7 @@ QPushButton:pressed {
 }
 
 QPushButton:disabled {
-    background-color: #444444; /* Более светлый фон для неактивных кнопок */
+    background-color: #121212; /* Более светлый фон для неактивных кнопок */
     color: #aaaaaa; /* Более тусклый текст для неактивных кнопок */
 }
 
@@ -41,7 +41,7 @@ QSlider::groove:horizontal {
 }
 
 QSlider::handle:horizontal {
-    background: #007bff; /* Синий цвет ползунка */
+    background: #ffffff; /* Белый цвет ползунка */
     border: 1px solid #007bff;
     width: 18px;
     margin: -5px 0; /* Увеличиваем размер ползунка */
@@ -49,14 +49,14 @@ QSlider::handle:horizontal {
 }
 
 QSlider::sub-page:horizontal {
-    background: #007bff; /* Цвет заполненной части ползунка */
+    background: #ffffff; /* Цвет заполненной части ползунка */
     border-radius: 4px;
 }
 
 QListWidget {
-    background-color: #1e1e1e; /* Очень темный фон для списка */
-    border: 1px solid #333333;
-    border-radius: 8px;
+    background-color: #121212; /* Очень темный фон для списка */
+    border: 2px solid #333333;
+    border-radius: 15px;
     padding: 5px;
 }
 
